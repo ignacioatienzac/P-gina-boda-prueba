@@ -27,21 +27,30 @@
     .animate-pulse-custom { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
   </style>
 
-  <!-- Polyfill de process para Gemini -->
-  <script>window.process = { env: { API_KEY: "" } };</script>
-
-  <!-- Cargador dinámico esm.sh/run (Maneja TSX y React automáticamente) -->
-  <script type="module" src="https://esm.sh/run"></script>
-<script type="importmap">
+  <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
+    "@google/genai": "https://esm.sh/@google/genai@1.35.0",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.35.0"
+    "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
+
+  <!-- Babel para transpilación en caliente y bypass de MIME types -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script>
+    Babel.registerPreset('app-preset', {
+      presets: [
+        [Babel.availablePresets['typescript'], { allExtensions: true, isTSX: true }],
+        [Babel.availablePresets['react'], { runtime: 'automatic', importSource: 'react' }]
+      ]
+    });
+    window.process = { env: { API_KEY: "" } };
+  </script>
 </head>
 <body>
   <div id="root">
@@ -53,20 +62,14 @@
     </div>
   </div>
 
-  <!-- Punto de entrada principal configurado para el cargador de esm.sh -->
-  <script type="text/tsx">
-    import React from 'react';
+  <script type="text/babel" data-presets="app-preset" data-type="module">
     import { createRoot } from 'react-dom/client';
     import App from './App.tsx';
 
     const container = document.getElementById('root');
     if (container) {
       const root = createRoot(container);
-      root.render(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      );
+      root.render(<App />);
     }
   </script>
 </body>

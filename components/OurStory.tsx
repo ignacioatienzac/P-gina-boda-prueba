@@ -1,8 +1,8 @@
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { geminiService } from '../services/gemini.ts';
 
-const OurStory: React.FC = () => {
+const OurStory = () => {
   const [story, setStory] = useState<string>('');
   const [loading, setLoading] = useState(true);
 

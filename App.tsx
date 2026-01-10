@@ -1,5 +1,4 @@
 
-import React from 'react';
 import Navbar from './components/Navbar.tsx';
 import Hero from './components/Hero.tsx';
 import OurStory from './components/OurStory.tsx';
@@ -8,7 +7,7 @@ import Registry from './components/Registry.tsx';
 import RSVPForm from './components/RSVPForm.tsx';
 import Gallery from './components/Gallery.tsx';
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <div className="min-h-screen">
       <Navbar />

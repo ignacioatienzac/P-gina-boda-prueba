@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { geminiService } from '../services/gemini.ts';
 
-const RSVPForm: React.FC = () => {
+const RSVPForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,7 +26,7 @@ const RSVPForm: React.FC = () => {
     setIsGenerating(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     setIsSubmitting(true);
     // Simulate API call
