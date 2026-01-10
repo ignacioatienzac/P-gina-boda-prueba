@@ -32,25 +32,12 @@
   "imports": {
     "react": "https://esm.sh/react@19.0.0",
     "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
     "@google/genai": "https://esm.sh/@google/genai@1.35.0",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
-
-  <!-- Babel para transpilación en caliente y bypass de MIME types -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script>
-    Babel.registerPreset('app-preset', {
-      presets: [
-        [Babel.availablePresets['typescript'], { allExtensions: true, isTSX: true }],
-        [Babel.availablePresets['react'], { runtime: 'automatic', importSource: 'react' }]
-      ]
-    });
-    window.process = { env: { API_KEY: "" } };
-  </script>
 </head>
 <body>
   <div id="root">
@@ -62,15 +49,44 @@
     </div>
   </div>
 
-  <script type="text/babel" data-presets="app-preset" data-type="module">
+  <script type="module">
+    import React from 'react';
     import { createRoot } from 'react-dom/client';
-    import App from './App.tsx';
 
-    const container = document.getElementById('root');
-    if (container) {
-      const root = createRoot(container);
-      root.render(<App />);
+    window.process = { env: { API_KEY: "" } };
+
+    async function init() {
+      const container = document.getElementById('root');
+      
+      try {
+        // Obtenemos la ruta absoluta de App.tsx basándonos en la ubicación actual
+        const currentPath = window.location.pathname;
+        const dir = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+        const appUrl = `${window.location.origin}${dir}App.tsx`;
+
+        // Importamos la aplicación a través del bundle de esm.sh
+        // Esto compila el TSX a JS y resuelve el problema del tipo MIME
+        // También fuerza a que todos usen la misma instancia de React 19
+        const bundleUrl = `https://esm.sh/${appUrl}?bundle&deps=react@19.0.0,react-dom@19.0.0`;
+        const module = await import(bundleUrl);
+        const App = module.default;
+
+        const root = createRoot(container);
+        root.render(React.createElement(App));
+      } catch (error) {
+        console.error("Fallo crítico al cargar la app:", error);
+        container.innerHTML = `
+          <div style="padding: 40px; text-align: center; font-family: serif; color: #7f1d1d;">
+            <h2 style="font-size: 1.5rem;">Vaya, algo no ha salido como esperábamos</h2>
+            <p style="margin: 20px 0; color: #4b5563;">No hemos podido cargar la invitación debido a un problema con el servidor de archivos.</p>
+            <p style="font-size: 0.7rem; color: #9ca3af; font-family: monospace;">${error.message}</p>
+            <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #b45309; color: white; border: none; cursor: pointer;">Reintentar</button>
+          </div>
+        `;
+      }
     }
+
+    init();
   </script>
 </body>
 </html>
