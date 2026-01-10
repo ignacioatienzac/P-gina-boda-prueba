@@ -13,20 +13,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #fdfbf7; }
+    body { font-family: 'Inter', sans-serif; background-color: #fdfbf7; margin: 0; }
     h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
     .font-script { font-family: 'Dancing Script', cursive; }
     html { scroll-behavior: smooth; }
-    #root:empty { display: flex; align-items: center; justify-content: center; height: 100vh; font-family: serif; color: #b45309; }
+    #root { min-height: 100vh; }
+    #loader { display: flex; align-items: center; justify-content: center; height: 100vh; font-family: serif; color: #b45309; text-align: center; padding: 20px; }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .animate-pulse-custom { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
   </style>
-
-  <!-- Polyfill de process para Gemini -->
-  <script>window.process = { env: { API_KEY: "" } };</script>
-
-  <!-- Cargador universal esm.sh/run. 
-       Este script intercepta los imports de .tsx y los transpila automáticamente 
-       en el navegador, solucionando el problema del MIME type de GitHub Pages. -->
-  <script type="module" src="https://esm.sh/run"></script>
 <script type="importmap">
 {
   "imports": {
@@ -39,23 +38,67 @@
 </script>
 </head>
 <body>
-  <div id="root">Cargando nuestra historia...</div>
+  <div id="root">
+    <div id="loader">
+      <div class="animate-pulse-custom">
+        <p style="font-size: 2.5rem; margin-bottom: 20px;">💍</p>
+        <p style="letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.8rem; font-weight: 300;">Preparando la celebración...</p>
+      </div>
+    </div>
+  </div>
 
-  <!-- Punto de entrada principal -->
-  <script type="text/tsx">
-    import React from 'react';
-    import { createRoot } from 'react-dom/client';
-    import App from './App.tsx';
+  <script type="module">
+    // Definimos el entorno antes de cargar los módulos
+    window.process = { env: { API_KEY: "" } };
 
-    const container = document.getElementById('root');
-    if (container) {
-      const root = createRoot(container);
-      root.render(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      );
+    /**
+     * BOOTSTRAPPER PARA GITHUB PAGES
+     * GitHub Pages bloquea archivos .tsx por tipo MIME incorrecto.
+     * Esta función usa esm.sh para transpilar y empaquetar la app en tiempo real.
+     */
+    async function startApp() {
+      const rootContainer = document.getElementById('root');
+      
+      try {
+        // Obtenemos la URL base del despliegue (funciona tanto en local como en subdirectorios de GitHub)
+        const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
+        const entryPoint = `${baseUrl}App.tsx`;
+
+        // 1. Cargamos React y ReactDOM desde una fuente común para evitar conflictos
+        const [React, { createRoot }] = await Promise.all([
+          import('https://esm.sh/react@19.0.0'),
+          import('https://esm.sh/react-dom@19.0.0/client')
+        ]);
+
+        // 2. Cargamos App.tsx a través de esm.sh. 
+        // El parámetro ?bundle le dice a esm.sh que procese los imports internos (.tsx)
+        const appModuleUrl = `https://esm.sh/${entryPoint}?bundle`;
+        const { default: App } = await import(appModuleUrl);
+        
+        // 3. Renderizamos la aplicación
+        const root = createRoot(rootContainer);
+        root.render(React.createElement(React.StrictMode, null, React.createElement(App)));
+        
+      } catch (err) {
+        console.error('Error al cargar la aplicación de boda:', err);
+        rootContainer.innerHTML = `
+          <div style="display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center; font-family: sans-serif; padding: 20px;">
+            <div style="background: white; padding: 40px; border-radius: 4px; border: 1px solid #fee2e2; max-width: 450px;">
+              <h2 style="color: #991b1b; margin-top: 0; font-family: serif;">No se pudo cargar la invitación</h2>
+              <p style="color: #4b5563; font-size: 0.9rem; line-height: 1.5;">Hubo un problema técnico al procesar los archivos de la página en GitHub Pages.</p>
+              <div style="background: #f9fafb; padding: 12px; border-radius: 4px; margin: 20px 0; font-family: monospace; font-size: 0.7rem; color: #ef4444; overflow: auto; text-align: left;">
+                ${err.message}
+              </div>
+              <button onclick="window.location.reload()" style="background: #b45309; color: white; border: none; padding: 12px 24px; border-radius: 2px; cursor: pointer; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: bold;">
+                Reintentar carga
+              </button>
+            </div>
+          </div>
+        `;
+      }
     }
+
+    startApp();
   </script>
 </body>
 </html>
