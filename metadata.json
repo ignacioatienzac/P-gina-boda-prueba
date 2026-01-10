@@ -1,0 +1,7 @@
+{
+  "name": "Nuestra Boda - Alejandro & Valeria",
+  "description": "Una elegante página web de boda que incluye cuenta regresiva, detalles del evento, confirmación de asistencia (RSVP) con asistencia de IA, galería de fotos y lista de regalos.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
