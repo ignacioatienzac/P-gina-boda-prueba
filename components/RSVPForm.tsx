@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { geminiService } from '../services/gemini';
+import { geminiService } from '../services/gemini.ts';
 
 const RSVPForm: React.FC = () => {
   const [formData, setFormData] = useState({

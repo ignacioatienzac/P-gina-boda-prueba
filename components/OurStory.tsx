@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { geminiService } from '../services/gemini';
+import { geminiService } from '../services/gemini.ts';
 
 const OurStory: React.FC = () => {
   const [story, setStory] = useState<string>('');
