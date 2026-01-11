@@ -30,9 +30,11 @@
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
     "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
@@ -46,36 +48,6 @@
       </div>
     </div>
   </div>
-
-  <script type="module">
-    // Importamos React y ReactDOM desde una única fuente para evitar conflictos de hooks
-    import React from 'https://esm.sh/react@19.0.0';
-    import { createRoot } from 'https://esm.sh/react-dom@19.0.0/client';
-
-    window.process = { env: { API_KEY: "" } };
-
-    async function init() {
-      const container = document.getElementById('root');
-      
-      try {
-        const appUrl = new URL('./App.tsx', window.location.href).href;
-        // Usamos esm.sh para compilar el TSX y le inyectamos la misma versión de React
-        const bundleUrl = `https://esm.sh/${appUrl}?bundle&deps=react@19.0.0,react-dom@19.0.0`;
-        
-        const module = await import(bundleUrl);
-        const App = module.default;
-
-        if (!App) throw new Error("No se pudo cargar el componente principal.");
-
-        const root = createRoot(container);
-        root.render(React.createElement(App));
-      } catch (error) {
-        console.error("Fallo crítico:", error);
-        container.innerHTML = `<div style="padding: 40px; text-align: center;">Error al cargar la invitación. Por favor, refresca la página.</div>`;
-      }
-    }
-
-    init();
-  </script>
+  <script type="module" src="/index.tsx"></script>
 </body>
 </html>
