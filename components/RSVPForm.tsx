@@ -110,7 +110,7 @@ const RSVPForm = () => {
             <div className="text-center mb-12">
               <span className="font-script text-3xl text-amber-700 block mb-2">R.S.V.P.</span>
               <h2 className="text-4xl font-serif text-gray-800">Confirma tu Asistencia</h2>
-              <p className="text-gray-500 mt-4">Por favor responde antes del 1 de Septiembre, 2025</p>
+              <p className="text-gray-500 mt-4">Por favor responde antes del 1 de Junio, 2026</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
