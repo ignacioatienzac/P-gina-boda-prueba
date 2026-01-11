@@ -59,28 +59,31 @@
       const container = document.getElementById('root');
       
       try {
-        // Obtenemos la ruta absoluta de App.tsx basándonos en la ubicación actual
-        const currentPath = window.location.pathname;
-        const dir = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
-        const appUrl = `${window.location.origin}${dir}App.tsx`;
+        // Resolvemos la ruta absoluta de App.tsx de forma segura usando el constructor URL
+        const appUrl = new URL('./App.tsx', window.location.href).href;
 
         // Importamos la aplicación a través del bundle de esm.sh
-        // Esto compila el TSX a JS y resuelve el problema del tipo MIME
-        // También fuerza a que todos usen la misma instancia de React 19
+        // Esto compila el TSX a JS y soluciona el problema de MIME type en GitHub Pages
+        // Forzamos el uso de React 19.0.0 para evitar duplicidad de instancias
         const bundleUrl = `https://esm.sh/${appUrl}?bundle&deps=react@19.0.0,react-dom@19.0.0`;
+        
         const module = await import(bundleUrl);
         const App = module.default;
+
+        if (!App) throw new Error("No se pudo cargar el componente principal (export default App).");
 
         const root = createRoot(container);
         root.render(React.createElement(App));
       } catch (error) {
         console.error("Fallo crítico al cargar la app:", error);
         container.innerHTML = `
-          <div style="padding: 40px; text-align: center; font-family: serif; color: #7f1d1d;">
-            <h2 style="font-size: 1.5rem;">Vaya, algo no ha salido como esperábamos</h2>
-            <p style="margin: 20px 0; color: #4b5563;">No hemos podido cargar la invitación debido a un problema con el servidor de archivos.</p>
-            <p style="font-size: 0.7rem; color: #9ca3af; font-family: monospace;">${error.message}</p>
-            <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #b45309; color: white; border: none; cursor: pointer;">Reintentar</button>
+          <div style="padding: 40px; text-align: center; font-family: serif; color: #7f1d1d; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: white;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Vaya, algo no ha salido como esperábamos</h2>
+            <p style="margin-bottom: 2rem; color: #4b5563; max-width: 400px;">Hubo un error de conexión al cargar la invitación. Esto suele ocurrir por la configuración de seguridad del servidor de archivos.</p>
+            <div style="font-size: 0.7rem; color: #9ca3af; font-family: monospace; background: #f3f4f6; padding: 1.5rem; border-radius: 4px; text-align: left; max-width: 90vw; overflow-x: auto; margin-bottom: 2rem;">
+              ${error.message}
+            </div>
+            <button onclick="location.reload()" style="padding: 12px 24px; background: #b45309; color: white; border: none; cursor: pointer; border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Reintentar</button>
           </div>
         `;
       }
