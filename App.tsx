@@ -1,12 +1,12 @@
 
 import React from 'react';
-import Navbar from './components/Navbar.tsx';
-import Hero from './components/Hero.tsx';
-import OurStory from './components/OurStory.tsx';
-import Events from './components/Events.tsx';
-import Registry from './components/Registry.tsx';
-import RSVPForm from './components/RSVPForm.tsx';
-import Gallery from './components/Gallery.tsx';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import OurStory from './components/OurStory';
+import Events from './components/Events';
+import Registry from './components/Registry';
+import RSVPForm from './components/RSVPForm';
+import Gallery from './components/Gallery';
 
 const App = () => {
   return (
