@@ -13,10 +13,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #fdfbf7; margin: 0; }
+    body { font-family: 'Inter', sans-serif; background-color: #fdfbf7; margin: 0; padding: 0; }
     h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
     .font-script { font-family: 'Dancing Script', cursive; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     #root { min-height: 100vh; }
     #loader { display: flex; align-items: center; justify-content: center; height: 100vh; font-family: serif; color: #b45309; text-align: center; padding: 20px; }
     
@@ -26,15 +26,13 @@
     }
     .animate-pulse-custom { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
   </style>
-
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "@google/genai": "https://esm.sh/@google/genai@1.35.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
   }
 }
 </script>
@@ -50,8 +48,9 @@
   </div>
 
   <script type="module">
-    import React from 'react';
-    import { createRoot } from 'react-dom/client';
+    // Importamos React y ReactDOM desde una única fuente para evitar conflictos de hooks
+    import React from 'https://esm.sh/react@19.0.0';
+    import { createRoot } from 'https://esm.sh/react-dom@19.0.0/client';
 
     window.process = { env: { API_KEY: "" } };
 
@@ -59,33 +58,20 @@
       const container = document.getElementById('root');
       
       try {
-        // Resolvemos la ruta absoluta de App.tsx de forma segura usando el constructor URL
         const appUrl = new URL('./App.tsx', window.location.href).href;
-
-        // Importamos la aplicación a través del bundle de esm.sh
-        // Esto compila el TSX a JS y soluciona el problema de MIME type en GitHub Pages
-        // Forzamos el uso de React 19.0.0 para evitar duplicidad de instancias
+        // Usamos esm.sh para compilar el TSX y le inyectamos la misma versión de React
         const bundleUrl = `https://esm.sh/${appUrl}?bundle&deps=react@19.0.0,react-dom@19.0.0`;
         
         const module = await import(bundleUrl);
         const App = module.default;
 
-        if (!App) throw new Error("No se pudo cargar el componente principal (export default App).");
+        if (!App) throw new Error("No se pudo cargar el componente principal.");
 
         const root = createRoot(container);
         root.render(React.createElement(App));
       } catch (error) {
-        console.error("Fallo crítico al cargar la app:", error);
-        container.innerHTML = `
-          <div style="padding: 40px; text-align: center; font-family: serif; color: #7f1d1d; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: white;">
-            <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Vaya, algo no ha salido como esperábamos</h2>
-            <p style="margin-bottom: 2rem; color: #4b5563; max-width: 400px;">Hubo un error de conexión al cargar la invitación. Esto suele ocurrir por la configuración de seguridad del servidor de archivos.</p>
-            <div style="font-size: 0.7rem; color: #9ca3af; font-family: monospace; background: #f3f4f6; padding: 1.5rem; border-radius: 4px; text-align: left; max-width: 90vw; overflow-x: auto; margin-bottom: 2rem;">
-              ${error.message}
-            </div>
-            <button onclick="location.reload()" style="padding: 12px 24px; background: #b45309; color: white; border: none; cursor: pointer; border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Reintentar</button>
-          </div>
-        `;
+        console.error("Fallo crítico:", error);
+        container.innerHTML = `<div style="padding: 40px; text-align: center;">Error al cargar la invitación. Por favor, refresca la página.</div>`;
       }
     }
 
