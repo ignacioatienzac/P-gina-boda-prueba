@@ -34,7 +34,7 @@ const Navbar = () => {
       <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled || isMenuOpen ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <div className={`relative z-50 font-serif text-2xl font-bold tracking-widest transition-colors duration-300 ${isScrolled || isMenuOpen ? 'text-amber-900' : 'text-white'}`}>
-            A & V
+            V & I
           </div>
           
           {/* Desktop Links */}
@@ -83,7 +83,7 @@ const Navbar = () => {
           ))}
           <div className="pt-8 text-center">
             <div className="h-[1px] w-12 bg-amber-200 mx-auto mb-8"></div>
-            <p className="text-gray-400 text-[10px] uppercase tracking-[0.3em]">12 de Octubre, 2025</p>
+            <p className="text-gray-400 text-[10px] uppercase tracking-[0.3em]">8 de Agosto, 2026</p>
           </div>
         </div>
       </div>

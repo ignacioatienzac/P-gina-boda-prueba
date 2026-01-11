@@ -5,17 +5,17 @@ const Events: React.FC = () => {
   const events = [
     {
       title: 'La Ceremonia',
-      time: '18:00 HRS',
-      location: 'Capilla de la Finca',
-      address: 'Carretera del Sol Km 12, Ciudad Jardin',
-      description: 'Acompáñanos mientras intercambiamos nuestros votos en una ceremonia íntima.',
+      time: '20:00 HRS',
+      location: 'Jardines de la Finca',
+      address: 'Finca Puerta de Hierro',
+      description: 'Acompáñanos mientras intercambiamos nuestros votos en una ceremonia íntima bajo las estrellas.',
       image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800'
     },
     {
       title: 'Banquete & Fiesta',
-      time: '20:00 HRS',
-      location: 'Gran Salón Terraza',
-      address: 'Jardines Principales de la Finca',
+      time: '21:30 HRS',
+      location: 'Gran Salón Principal',
+      address: 'Finca Puerta de Hierro',
       description: 'Cena, baile y mucha felicidad para celebrar nuestro nuevo comienzo.',
       image: 'https://images.unsplash.com/photo-1465495910483-34a1be90c003?auto=format&fit=crop&q=80&w=800'
     }

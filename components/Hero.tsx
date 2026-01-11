@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react';
 
 const Hero = () => {
-  const weddingDate = new Date('2025-10-12T18:00:00').getTime();
+  // Fecha: 8 de Agosto de 2026 a las 20:00 (8 PM)
+  const weddingDate = new Date('2026-08-08T20:00:00').getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
@@ -35,9 +36,9 @@ const Hero = () => {
 
       <div className="relative z-10 text-center text-white px-6">
         <p className="font-serif text-lg md:text-xl uppercase tracking-[0.5em] mb-4 opacity-90">Nos Casamos</p>
-        <h1 className="text-6xl md:text-9xl font-serif mb-6 leading-tight">Alejandro & Valeria</h1>
+        <h1 className="text-6xl md:text-9xl font-serif mb-6 leading-tight">Vicky & Ignacio</h1>
         <div className="h-[1px] w-24 bg-white/50 mx-auto mb-8"></div>
-        <p className="text-xl md:text-2xl font-script mb-12">12 de Octubre, 2025 • Finca El Paraíso</p>
+        <p className="text-xl md:text-2xl font-script mb-12">8 de Agosto, 2026 • Finca Puerta de Hierro</p>
         
         {/* Countdown */}
         <div className="flex justify-center space-x-4 md:space-x-12">
