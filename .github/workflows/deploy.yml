@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          # Se ha eliminado la línea de cache: 'npm' para corregir el error
       - name: Install dependencies
         run: npm install
       - name: Build
