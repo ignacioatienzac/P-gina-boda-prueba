@@ -26,14 +26,43 @@ const RSVPForm = () => {
     setIsGenerating(false);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+
+    // URL de acción de tu Google Form (cambiamos /viewform por /formResponse)
+    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSebedrMeIKWgvRA_xj6E9bndVbkoebrAIE5TflDlNyJM4JwDw/formResponse';
+
+    // Creamos los datos para enviar
+    const formPayload = new FormData();
+    
+    // Mapeo de campos usando los IDs que me diste
+    formPayload.append('entry.158407503', formData.name); // NOMBRE
+    formPayload.append('entry.709473353', formData.email); // EMAIL
+    
+    // Transformamos el valor interno 'yes'/'no' al texto exacto del Google Form
+    const attendanceText = formData.attendance === 'yes' ? 'Sí, con mucho gusto' : 'Lamentablemente no puedo';
+    formPayload.append('entry.467575069', attendanceText);
+    
+    formPayload.append('entry.847141184', formData.guests.toString()); // INVITADOS
+    formPayload.append('entry.851968430', formData.dietary || ''); // DIETA (opcional)
+    formPayload.append('entry.267258121', formData.message || ''); // MENSAJE
+
+    try {
+      await fetch(GOOGLE_FORM_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Importante para evitar errores de CORS con Google Forms
+        body: formPayload
+      });
+
+      // Como usamos no-cors, asumimos que se envió correctamente si no lanzó error
       setIsSubmitting(false);
       setSubmitted(true);
-    }, 1500);
+    } catch (error) {
+      console.error("Error enviando formulario", error);
+      setIsSubmitting(false);
+      alert("Hubo un problema al enviar tu respuesta. Por favor intenta de nuevo.");
+    }
   };
 
   if (submitted) {
@@ -45,7 +74,17 @@ const RSVPForm = () => {
             <h2 className="text-3xl font-serif mb-4">¡Gracias por confirmar!</h2>
             <p className="text-gray-600">Hemos recibido tu respuesta correctamente. Nos vemos muy pronto para celebrar juntos.</p>
             <button 
-              onClick={() => setSubmitted(false)}
+              onClick={() => {
+                setSubmitted(false);
+                setFormData({
+                  name: '',
+                  email: '',
+                  attendance: 'yes',
+                  guests: 1,
+                  dietary: '',
+                  message: ''
+                });
+              }}
               className="mt-8 text-amber-700 font-bold uppercase tracking-widest text-xs border-b border-amber-700"
             >
               Enviar otra respuesta
@@ -98,7 +137,7 @@ const RSVPForm = () => {
                 <div>
                   <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">¿Asistirás?</label>
                   <select 
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none appearance-none"
+                    className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none appearance-none bg-white"
                     value={formData.attendance}
                     onChange={e => setFormData({...formData, attendance: e.target.value as 'yes' | 'no'})}
                   >
@@ -111,10 +150,11 @@ const RSVPForm = () => {
                   <input 
                     type="number" 
                     min="1" 
-                    max="5"
+                    max="10"
+                    required
                     className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none"
                     value={formData.guests}
-                    onChange={e => setFormData({...formData, guests: parseInt(e.target.value)})}
+                    onChange={e => setFormData({...formData, guests: parseInt(e.target.value) || 1})}
                   />
                 </div>
               </div>
