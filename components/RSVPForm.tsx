@@ -30,38 +30,42 @@ const RSVPForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // URL de acción de tu Google Form (cambiamos /viewform por /formResponse)
+    // URL de acción de tu Google Form
     const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSebedrMeIKWgvRA_xj6E9bndVbkoebrAIE5TflDlNyJM4JwDw/formResponse';
 
-    // Creamos los datos para enviar
-    const formPayload = new FormData();
+    // IMPORTANTE: Usamos URLSearchParams en lugar de FormData.
+    // Google Forms procesa mejor este formato (x-www-form-urlencoded) en peticiones desde webs externas.
+    const formParams = new URLSearchParams();
     
-    // Mapeo de campos usando los IDs que me diste
-    formPayload.append('entry.158407503', formData.name); // NOMBRE
-    formPayload.append('entry.709473353', formData.email); // EMAIL
+    // Mapeo de campos
+    formParams.append('entry.158407503', formData.name); // NOMBRE
+    formParams.append('entry.709473353', formData.email); // EMAIL
     
-    // Transformamos el valor interno 'yes'/'no' al texto exacto del Google Form
+    // Transformamos el valor
     const attendanceText = formData.attendance === 'yes' ? 'Sí, con mucho gusto' : 'Lamentablemente no puedo';
-    formPayload.append('entry.467575069', attendanceText);
+    formParams.append('entry.467575069', attendanceText);
     
-    formPayload.append('entry.847141184', formData.guests.toString()); // INVITADOS
-    formPayload.append('entry.851968430', formData.dietary || ''); // DIETA (opcional)
-    formPayload.append('entry.267258121', formData.message || ''); // MENSAJE
+    formParams.append('entry.847141184', formData.guests.toString()); // INVITADOS
+    formParams.append('entry.851968430', formData.dietary || ''); // DIETA
+    formParams.append('entry.267258121', formData.message || ''); // MENSAJE
 
     try {
       await fetch(GOOGLE_FORM_URL, {
         method: 'POST',
-        mode: 'no-cors', // Importante para evitar errores de CORS con Google Forms
-        body: formPayload
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formParams
       });
 
-      // Como usamos no-cors, asumimos que se envió correctamente si no lanzó error
+      // Al usar no-cors, no recibimos respuesta JSON, así que asumimos éxito si la red no falló.
       setIsSubmitting(false);
       setSubmitted(true);
     } catch (error) {
       console.error("Error enviando formulario", error);
       setIsSubmitting(false);
-      alert("Hubo un problema al enviar tu respuesta. Por favor intenta de nuevo.");
+      alert("Hubo un problema de conexión al enviar tu respuesta. Por favor intenta de nuevo.");
     }
   };
 
