@@ -36,6 +36,7 @@ const Navbar = () => {
   const languages: { code: Language; label: string }[] = [
     { code: 'es', label: 'ES' },
     { code: 'en', label: 'EN' },
+    { code: 'yue', label: '粵' },
   ];
 
   return (

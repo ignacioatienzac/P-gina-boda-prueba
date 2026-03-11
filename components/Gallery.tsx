@@ -38,7 +38,7 @@ const Gallery: React.FC = () => {
             <GalleryItem src="./images/image_2.jpeg" alt="Momento 2" className="col-span-1 h-72" imgClassName="object-top" />
 
             <GalleryItem src="./images/image_3.jpeg" alt="Momento 3" className="col-span-1 h-64" />
-            <GalleryItem src="./images/image_4.png"  alt="Momento 4" className="col-span-1 h-64" imgClassName="object-top" />
+            <GalleryItem src="./images/image_4.png"  alt="Momento 4" className="col-span-1 h-64" imgClassName="object-[center_15%]" />
             <GalleryItem src="./images/image_5.jpeg" alt="Momento 5" className="col-span-1 h-64" />
 
             <GalleryItem src="./images/image_6.jpeg" alt="Momento 6" className="col-span-1 h-72" />
@@ -49,7 +49,7 @@ const Gallery: React.FC = () => {
           </div>
 
           {/* Right: tall sidebar image */}
-          <GalleryItem src="./images/image_8.jpeg" alt="Momento 8" className="h-full" imgClassName="object-right" />
+          <GalleryItem src="./images/image_8.jpeg" alt="Momento 8" className="h-full" imgClassName="object-[65%]" />
         </div>
       </div>
     </section>

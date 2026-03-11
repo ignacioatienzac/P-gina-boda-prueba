@@ -1,4 +1,4 @@
-export type Language = 'es' | 'en';
+export type Language = 'es' | 'en' | 'yue';
 
 export const translations = {
   es: {
@@ -203,6 +203,104 @@ export const translations = {
     },
     footer: {
       madeWith: 'Made with love for our big day',
+    },
+  },
+
+  yue: {
+    nav: {
+      home: '主頁',
+      story: '故事',
+      event: '活動',
+      dressCode: '着裝',
+      gifts: '禮物',
+      rsvp: '回覆',
+      date: '2026年8月8日',
+      openMenu: '打開選單',
+    },
+    hero: {
+      subtitle: '我哋結婚喇！',
+      date: '2026年8月8日 • Finca Puerta de Hierro',
+      days: '日',
+      hrs: '時',
+      min: '分',
+      sec: '秒',
+    },
+    story: {
+      title: '我哋嘅故事',
+      heading: '一切係點開始嘅',
+      fallback: '我哋嘅故事係人生中最美麗嘅旅程。',
+      aiPrompt:
+        '用廣東話寫一個短篇愛情故事（最多150字），關於一對叫Vicky同Ignacio嘅情侶。佢哋喺秋天嘅咖啡店相遇，鍾意旅行，決定喺日落時分嘅莊園結婚。語氣要浪漫同富有詩意。只回覆故事正文。',
+    },
+    events: {
+      heading: '大日子',
+      ceremony: {
+        title: '婚禮儀式',
+        time: '晚上8:00',
+        location: '莊園花園',
+        address: 'Finca Puerta de Hierro',
+        description:
+          '請同我哋一齊，喺星空下見證我哋交換誓詞嘅親密儀式。',
+      },
+      reception: {
+        title: '晚宴及派對',
+        time: '晚上9:30',
+        location: '大宴會廳',
+        address: 'Finca Puerta de Hierro',
+        description:
+          '晚餐、跳舞，同無盡嘅歡樂，一齊慶祝我哋嘅新開始。',
+      },
+      viewMap: '睇地圖',
+    },
+    gallery: {
+      heading: '我哋嘅時刻',
+      subtitle: '活在我哋嘅夢想中⋯⋯',
+    },
+    dressCode: {
+      heading: '着裝指南',
+      intro:
+        '活動冇正式嘅着裝要求。不過，如果你想融入當地風情，以下係安達盧西亞慶祝呢啲場合嘅簡短指南：',
+      men: '男士',
+      menText:
+        '西裝配領帶係最傳統嘅選擇，特別係日間婚禮。晚間慶典常見深色西裝，甚至晨禮服（chaqué）用於非常正式嘅場合。安達盧西亞風格注重細節——袋巾、袖扣同擦亮嘅皮鞋。',
+      women: '女士',
+      womenText:
+        '雞尾酒裙或長裙係標準選擇，視乎時間而定。日間婚禮好傳統會戴頭飾、闊邊帽（pamelas）或髮箍，增添優雅節日感。晚間婚禮則偏好長款優雅禮服，配搭珠寶同小型手拿包。',
+    },
+    registry: {
+      heading: '禮物',
+      text: '對我哋嚟講，最珍貴嘅禮物就係你哋喺呢個特別日子嘅出席。不過，如果你想送禮，我哋喺下面提供咗銀行資料方便你：',
+    },
+    rsvp: {
+      title: 'R.S.V.P.',
+      heading: '敬請回覆',
+      deadline: '請喺2026年6月1日前回覆',
+      name: '全名',
+      email: '電郵地址',
+      attending: '你會出席嗎？',
+      attendYes: '會，好開心！',
+      attendNo: '好可惜，去唔到',
+      guests: '賓客人數',
+      dietary: '飲食限制（選填）',
+      dietaryPlaceholder: '過敏、素食等',
+      message: '畀新人嘅訊息',
+      aiSuggest: '✨ AI建議',
+      generating: '生成中⋯⋯',
+      submitting: '提交中⋯⋯',
+      submit: '確認出席',
+      thankYou: '多謝你嘅確認！',
+      received:
+        '我哋已經收到你嘅回覆。好快就見，一齊慶祝！',
+      another: '提交另一個回覆',
+      nameRequired: '請先輸入你嘅名。',
+      errorSending:
+        '發送回覆時出現連接問題，請再試一次。',
+      aiFallback: '恭喜！我哋為你哋感到好開心。',
+      aiPrompt: (name: string, attending: boolean) =>
+        `用廣東話寫一段簡短、優雅同感人嘅訊息，畀一對新人（Vicky同Ignacio），來自一位叫${name}嘅賓客。答案係佢${attending ? '會出席' : '去唔到'}。語氣要溫暖同尊重。只回覆訊息正文。`,
+    },
+    footer: {
+      madeWith: '為我哋嘅大日子用愛製作',
     },
   },
 } as const;
