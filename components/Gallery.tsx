@@ -37,7 +37,7 @@ const Gallery: React.FC = () => {
             <GalleryItem src="./images/image_1.jpeg" alt="Momento 1" className="col-span-2 h-[55vw] md:h-72" />
             <GalleryItem src="./images/image_2.jpeg" alt="Momento 2" className="col-span-1 h-[55vw] md:h-72" imgClassName="object-top" />
 
-            <GalleryItem src="./images/image_3.jpeg" alt="Momento 3" className="col-span-1 h-[50vw] md:h-64" />
+            <GalleryItem src="./images/image_3.jpeg" alt="Momento 3" className="col-span-1 h-[50vw] md:h-64" imgClassName="object-left" />
             <GalleryItem src="./images/image_4.png"  alt="Momento 4" className="col-span-1 h-[50vw] md:h-64" imgClassName="object-[center_15%]" />
             <GalleryItem src="./images/image_5.jpeg" alt="Momento 5" className="col-span-2 h-[50vw] md:col-span-1 md:h-64" />
 
