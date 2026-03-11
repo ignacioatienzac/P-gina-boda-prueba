@@ -1,19 +1,22 @@
 
 import { useState, useEffect } from 'react';
 import { geminiService } from '../services/gemini';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const OurStory = () => {
   const [story, setStory] = useState<string>('');
   const [loading, setLoading] = useState(true);
+  const { lang, t } = useLanguage();
 
   useEffect(() => {
     const fetchStory = async () => {
-      const generatedStory = await geminiService.generateOurStory();
+      setLoading(true);
+      const generatedStory = await geminiService.generateOurStory(t.story.aiPrompt, t.story.fallback);
       setStory(generatedStory);
       setLoading(false);
     };
     fetchStory();
-  }, []);
+  }, [lang]);
 
   return (
     <section id="story" className="py-24 bg-white">
@@ -28,8 +31,8 @@ const OurStory = () => {
             />
           </div>
           <div className="text-center md:text-left">
-            <span className="font-script text-3xl text-amber-700 block mb-4">Nuestra Historia</span>
-            <h2 className="text-4xl font-serif mb-8 text-gray-800">Cómo todo comenzó</h2>
+            <span className="font-script text-3xl text-amber-700 block mb-4">{t.story.title}</span>
+            <h2 className="text-4xl font-serif mb-8 text-gray-800">{t.story.heading}</h2>
             <div className="space-y-6 text-gray-600 leading-relaxed italic">
               {loading ? (
                 <div className="space-y-3">

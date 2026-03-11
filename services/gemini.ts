@@ -13,34 +13,28 @@ export class GeminiService {
     return this.ai;
   }
 
-  async generateRSVPMessage(name: string, attendance: string): Promise<string> {
+  async generateMessage(prompt: string, fallback: string): Promise<string> {
     try {
-      const prompt = `Escribe un mensaje corto, elegante y emocional para una pareja de novios (Vicky e Ignacio) de parte de un invitado llamado ${name}. La respuesta es que ${attendance === 'yes' ? 'SÍ asistirá' : 'NO podrá asistir'}. El tono debe ser cálido y respetuoso. Responde solo con el texto del mensaje en español.`;
-      
       const response = await this.getAI().models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: prompt,
       });
-
-      return response.text || "¡Felicidades por su gran día!";
+      return response.text || fallback;
     } catch (error) {
       console.error("Error generating AI message:", error);
-      return "¡Muchísimas felicidades! Estamos muy emocionados por ustedes.";
+      return fallback;
     }
   }
 
-  async generateOurStory(): Promise<string> {
+  async generateOurStory(prompt: string, fallback: string): Promise<string> {
     try {
-      const prompt = "Escribe una historia de amor corta (máximo 150 palabras) sobre una pareja llamada Vicky e Ignacio. Se conocieron en un café en otoño, les encanta viajar y decidieron casarse en una hermosa finca al atardecer. El tono debe ser romántico y poético.";
-      
       const response = await this.getAI().models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: prompt,
       });
-
-      return response.text || "Nuestra historia comenzó con una mirada y hoy escribimos el capítulo más importante.";
+      return response.text || fallback;
     } catch (error) {
-      return "Nuestra historia es el viaje más hermoso de nuestras vidas.";
+      return fallback;
     }
   }
 }

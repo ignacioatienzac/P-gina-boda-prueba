@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface GalleryItemProps {
   src: string;
@@ -19,31 +20,33 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ src, alt, className = '' }) =
 );
 
 const Gallery: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="gallery" className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif mb-4">Nuestros Momentos</h2>
-          <p className="text-gray-500 font-script text-2xl">Viviendo nuestro sueño...</p>
+          <h2 className="text-4xl font-serif mb-4">{t.gallery.heading}</h2>
+          <p className="text-gray-500 font-script text-2xl">{t.gallery.subtitle}</p>
         </div>
 
         <div className="grid grid-cols-3 gap-6">
           {/* Fila 1: ancha + cuadrada */}
-          <GalleryItem src="/images/image_1.jpeg" alt="Momento 1" className="col-span-2 h-72" />
-          <GalleryItem src="/images/image_2.jpeg" alt="Momento 2" className="col-span-1 h-72" />
+          <GalleryItem src="./images/image_1.jpeg" alt="Momento 1" className="col-span-2 h-72" />
+          <GalleryItem src="./images/image_2.jpeg" alt="Momento 2" className="col-span-1 h-72" />
 
           {/* Fila 2: tres iguales */}
-          <GalleryItem src="/images/image_3.jpeg" alt="Momento 3" className="col-span-1 h-64" />
-          <GalleryItem src="/images/image_4.png"  alt="Momento 4" className="col-span-1 h-64" />
-          <GalleryItem src="/images/image_5.jpeg" alt="Momento 5" className="col-span-1 h-64" />
+          <GalleryItem src="./images/image_3.jpeg" alt="Momento 3" className="col-span-1 h-64" />
+          <GalleryItem src="./images/image_4.png"  alt="Momento 4" className="col-span-1 h-64" />
+          <GalleryItem src="./images/image_5.jpeg" alt="Momento 5" className="col-span-1 h-64" />
 
           {/* Fila 3: cuadrada + ancha */}
-          <GalleryItem src="/images/image_6.jpeg" alt="Momento 6" className="col-span-1 h-72" />
-          <GalleryItem src="/images/image_7.jpeg" alt="Momento 7" className="col-span-2 h-72" />
+          <GalleryItem src="./images/image_6.jpeg" alt="Momento 6" className="col-span-1 h-72" />
+          <GalleryItem src="./images/image_7.jpeg" alt="Momento 7" className="col-span-2 h-72" />
 
           {/* Fila 4: ancha + cuadrada */}
-          <GalleryItem src="/images/image_8.jpeg" alt="Momento 8" className="col-span-2 h-72" />
-          <GalleryItem src="/images/image_9.jpeg" alt="Momento 9" className="col-span-1 h-72" />
+          <GalleryItem src="./images/image_8.jpeg" alt="Momento 8" className="col-span-2 h-72" />
+          <GalleryItem src="./images/image_9.jpeg" alt="Momento 9" className="col-span-1 h-72" />
         </div>
       </div>
     </section>

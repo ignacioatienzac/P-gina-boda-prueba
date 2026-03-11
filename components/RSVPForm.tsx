@@ -1,8 +1,10 @@
 
 import { useState } from 'react';
 import { geminiService } from '../services/gemini';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const RSVPForm = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,11 +19,12 @@ const RSVPForm = () => {
 
   const handleGenerateMessage = async () => {
     if (!formData.name) {
-      alert("Por favor, ingresa tu nombre primero.");
+      alert(t.rsvp.nameRequired);
       return;
     }
     setIsGenerating(true);
-    const aiMessage = await geminiService.generateRSVPMessage(formData.name, formData.attendance);
+    const prompt = t.rsvp.aiPrompt(formData.name, formData.attendance === 'yes');
+    const aiMessage = await geminiService.generateMessage(prompt, t.rsvp.aiFallback);
     setFormData(prev => ({ ...prev, message: aiMessage }));
     setIsGenerating(false);
   };
@@ -65,7 +68,7 @@ const RSVPForm = () => {
     } catch (error) {
       console.error("Error enviando formulario", error);
       setIsSubmitting(false);
-      alert("Hubo un problema de conexión al enviar tu respuesta. Por favor intenta de nuevo.");
+      alert(t.rsvp.errorSending);
     }
   };
 
@@ -75,8 +78,8 @@ const RSVPForm = () => {
         <div className="container mx-auto px-6 max-w-2xl text-center">
           <div className="bg-white p-12 shadow-2xl rounded-sm">
             <div className="text-5xl mb-6">✨</div>
-            <h2 className="text-3xl font-serif mb-4">¡Gracias por confirmar!</h2>
-            <p className="text-gray-600">Hemos recibido tu respuesta correctamente. Nos vemos muy pronto para celebrar juntos.</p>
+            <h2 className="text-3xl font-serif mb-4">{t.rsvp.thankYou}</h2>
+            <p className="text-gray-600">{t.rsvp.received}</p>
             <button 
               onClick={() => {
                 setSubmitted(false);
@@ -91,7 +94,7 @@ const RSVPForm = () => {
               }}
               className="mt-8 text-amber-700 font-bold uppercase tracking-widest text-xs border-b border-amber-700"
             >
-              Enviar otra respuesta
+              {t.rsvp.another}
             </button>
           </div>
         </div>
@@ -108,15 +111,15 @@ const RSVPForm = () => {
           
           <div className="relative z-10">
             <div className="text-center mb-12">
-              <span className="font-script text-3xl text-amber-700 block mb-2">R.S.V.P.</span>
-              <h2 className="text-4xl font-serif text-gray-800">Confirma tu Asistencia</h2>
-              <p className="text-gray-500 mt-4">Por favor responde antes del 1 de Junio, 2026</p>
+              <span className="font-script text-3xl text-amber-700 block mb-2">{t.rsvp.title}</span>
+              <h2 className="text-4xl font-serif text-gray-800">{t.rsvp.heading}</h2>
+              <p className="text-gray-500 mt-4">{t.rsvp.deadline}</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">Nombre Completo</label>
+                  <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">{t.rsvp.name}</label>
                   <input 
                     type="text" 
                     required
@@ -126,7 +129,7 @@ const RSVPForm = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">Correo Electrónico</label>
+                  <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">{t.rsvp.email}</label>
                   <input 
                     type="email" 
                     required
@@ -139,18 +142,18 @@ const RSVPForm = () => {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">¿Asistirás?</label>
+                  <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">{t.rsvp.attending}</label>
                   <select 
                     className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none appearance-none bg-white"
                     value={formData.attendance}
                     onChange={e => setFormData({...formData, attendance: e.target.value as 'yes' | 'no'})}
                   >
-                    <option value="yes">¡Sí, con mucho gusto!</option>
-                    <option value="no">Lamentablemente no puedo</option>
+                    <option value="yes">{t.rsvp.attendYes}</option>
+                    <option value="no">{t.rsvp.attendNo}</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">Número de Invitados</label>
+                  <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">{t.rsvp.guests}</label>
                   <input 
                     type="number" 
                     min="1" 
@@ -164,10 +167,10 @@ const RSVPForm = () => {
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">Restricciones Alimentarias (Opcional)</label>
+                <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">{t.rsvp.dietary}</label>
                 <input 
                   type="text" 
-                  placeholder="Alergias, vegetariano, etc."
+                  placeholder={t.rsvp.dietaryPlaceholder}
                   className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none"
                   value={formData.dietary}
                   onChange={e => setFormData({...formData, dietary: e.target.value})}
@@ -176,14 +179,14 @@ const RSVPForm = () => {
 
               <div>
                 <div className="flex justify-between items-end mb-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-gray-600">Mensaje para los novios</label>
+                  <label className="text-xs uppercase tracking-widest font-bold text-gray-600">{t.rsvp.message}</label>
                   <button 
                     type="button"
                     onClick={handleGenerateMessage}
                     disabled={isGenerating}
                     className="text-[10px] uppercase font-bold text-amber-700 hover:text-amber-800 flex items-center gap-1 disabled:opacity-50"
                   >
-                    {isGenerating ? 'Generando...' : '✨ Sugerir con IA'}
+                    {isGenerating ? t.rsvp.generating : t.rsvp.aiSuggest}
                   </button>
                 </div>
                 <textarea 
@@ -199,7 +202,7 @@ const RSVPForm = () => {
                 disabled={isSubmitting}
                 className="w-full py-4 bg-amber-900 text-white text-xs uppercase tracking-[0.3em] font-bold hover:bg-amber-950 transition-all disabled:opacity-70"
               >
-                {isSubmitting ? 'Enviando...' : 'Confirmar Asistencia'}
+                {isSubmitting ? t.rsvp.submitting : t.rsvp.submit}
               </button>
             </form>
           </div>

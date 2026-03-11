@@ -1,22 +1,25 @@
 
 import React from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Events: React.FC = () => {
+  const { t } = useLanguage();
+
   const events = [
     {
-      title: 'La Ceremonia',
-      time: '20:00 HRS',
-      location: 'Jardines de la Finca',
-      address: 'Finca Puerta de Hierro',
-      description: 'Acompáñanos mientras intercambiamos nuestros votos en una ceremonia íntima bajo las estrellas.',
+      title: t.events.ceremony.title,
+      time: t.events.ceremony.time,
+      location: t.events.ceremony.location,
+      address: t.events.ceremony.address,
+      description: t.events.ceremony.description,
       image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800'
     },
     {
-      title: 'Banquete & Fiesta',
-      time: '21:30 HRS',
-      location: 'Gran Salón Principal',
-      address: 'Finca Puerta de Hierro',
-      description: 'Cena, baile y mucha felicidad para celebrar nuestro nuevo comienzo.',
+      title: t.events.reception.title,
+      time: t.events.reception.time,
+      location: t.events.reception.location,
+      address: t.events.reception.address,
+      description: t.events.reception.description,
       image: 'https://images.unsplash.com/photo-1465495910483-34a1be90c003?auto=format&fit=crop&q=80&w=800'
     }
   ];
@@ -25,7 +28,7 @@ const Events: React.FC = () => {
     <section id="event" className="py-24 bg-[#fdfbf7]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif mb-4 text-gray-800">El Gran Día</h2>
+          <h2 className="text-4xl font-serif mb-4 text-gray-800">{t.events.heading}</h2>
           <div className="h-[1px] w-12 bg-amber-600 mx-auto"></div>
         </div>
         
@@ -45,7 +48,7 @@ const Events: React.FC = () => {
                   onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address)}`, '_blank')}
                   className="inline-block px-6 py-2 border border-gray-200 text-xs uppercase tracking-widest hover:bg-gray-50 transition-colors"
                 >
-                  Ver Mapa
+                  {t.events.viewMap}
                 </button>
               </div>
             </div>

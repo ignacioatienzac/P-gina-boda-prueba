@@ -1,13 +1,16 @@
 
 import React from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Registry: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="registry" className="py-24 bg-white">
       <div className="container mx-auto px-6 max-w-4xl text-center">
-        <h2 className="text-4xl font-serif mb-8 text-gray-800">Regalos</h2>
+        <h2 className="text-4xl font-serif mb-8 text-gray-800">{t.registry.heading}</h2>
         <p className="text-gray-600 mb-12 text-lg leading-relaxed max-w-2xl mx-auto text-justify">
-          Para nosotros, lo más importante es compartir este día con vosotros. Si de todas formas tenéis ilusión por hacernos un regalo, os dejamos aquí nuestro número de cuenta para vuestra comodidad:
+          {t.registry.text}
         </p>
 
         <div className="p-8 bg-[#fdfbf7] border border-amber-100 inline-block">

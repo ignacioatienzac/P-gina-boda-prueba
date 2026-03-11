@@ -8,8 +8,11 @@ import Registry from './components/Registry';
 import RSVPForm from './components/RSVPForm';
 import Gallery from './components/Gallery';
 import Accommodation from './components/Accommodation';
+import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 
-const App = () => {
+const AppContent = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -31,10 +34,16 @@ const App = () => {
           <span className="cursor-pointer hover:text-amber-700 transition-colors">Instagram</span>
           <span className="cursor-pointer hover:text-amber-700 transition-colors">Facebook</span>
         </div>
-        <p className="text-gray-300 text-[10px] uppercase tracking-widest">Hecho con amor para nuestro gran día</p>
+        <p className="text-gray-300 text-[10px] uppercase tracking-widest">{t.footer.madeWith}</p>
       </footer>
     </div>
   );
 };
+
+const App = () => (
+  <LanguageProvider>
+    <AppContent />
+  </LanguageProvider>
+);
 
 export default App;
