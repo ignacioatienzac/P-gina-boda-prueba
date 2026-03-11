@@ -34,7 +34,7 @@ const Gallery: React.FC = () => {
         <div className="grid grid-cols-[4fr_1fr] gap-6">
           {/* Left: mosaic grid */}
           <div className="grid grid-cols-3 gap-6">
-            <GalleryItem src="./images/image_10.png" alt="Momento 10" className="col-span-2 h-72" imgClassName="object-top" />
+            <GalleryItem src="./images/image_1.jpeg" alt="Momento 1" className="col-span-2 h-72" />
             <GalleryItem src="./images/image_2.jpeg" alt="Momento 2" className="col-span-1 h-72" imgClassName="object-top" />
 
             <GalleryItem src="./images/image_3.jpeg" alt="Momento 3" className="col-span-1 h-64" />
@@ -44,7 +44,7 @@ const Gallery: React.FC = () => {
             <GalleryItem src="./images/image_6.jpeg" alt="Momento 6" className="col-span-1 h-72" />
             <GalleryItem src="./images/image_7.jpeg" alt="Momento 7" className="col-span-2 h-72" />
 
-            <GalleryItem src="./images/image_1.jpeg" alt="Momento 1" className="col-span-2 h-72" />
+            <GalleryItem src="./images/image_10.png" alt="Momento 10" className="col-span-2 h-72" imgClassName="object-[center_20%]" />
             <GalleryItem src="./images/image_9.jpeg" alt="Momento 9" className="col-span-1 h-72" />
           </div>
 
