@@ -31,21 +31,51 @@ const Gallery: React.FC = () => {
           <p className="text-gray-500 font-script text-2xl">{t.gallery.subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
-          <GalleryItem src="./images/image_1.jpeg" alt="Momento 1" className="col-span-2 h-[55vw] md:h-72" />
-          <GalleryItem src="./images/image_2.jpeg" alt="Momento 2" className="col-span-1 h-[55vw] md:h-72" imgClassName="object-top" />
+        {/* ===== MOBILE LAYOUT (visible < md) ===== */}
+        <div className="md:hidden grid grid-cols-2 gap-3">
+          {/* Fila 1: image_1 full width */}
+          <GalleryItem src="./images/image_1.jpeg" alt="Momento 1" className="col-span-2 h-[55vw]" />
 
-          <GalleryItem src="./images/image_3.jpeg" alt="Momento 3" className="col-span-1 h-[50vw] md:h-64" imgClassName="object-left" />
-          <GalleryItem src="./images/image_4.png"  alt="Momento 4" className="col-span-1 h-[50vw] md:h-64" imgClassName="object-[center_15%]" />
-          <GalleryItem src="./images/image_8.jpeg" alt="Momento 8" className="col-span-2 md:col-span-1 h-[55vw] md:h-64" imgClassName="object-[75%]" />
+          {/* Fila 2: image_2 + image_3 */}
+          <GalleryItem src="./images/image_2.jpeg" alt="Momento 2" className="col-span-1 h-[55vw]" imgClassName="object-top" />
+          <GalleryItem src="./images/image_3.jpeg" alt="Momento 3" className="col-span-1 h-[55vw]" imgClassName="object-left" />
 
-          <GalleryItem src="./images/image_6.jpeg" alt="Momento 6" className="col-span-1 h-[55vw] md:h-72" />
-          <GalleryItem src="./images/image_7.jpeg" alt="Momento 7" className="col-span-1 h-[55vw] md:col-span-2 md:h-72" />
+          {/* Fila 3: image_4 + image_8 */}
+          <GalleryItem src="./images/image_4.png"  alt="Momento 4" className="col-span-1 h-[55vw]" imgClassName="object-[center_15%]" />
+          <GalleryItem src="./images/image_8.jpeg" alt="Momento 8" className="col-span-1 h-[55vw]" imgClassName="object-[75%]" />
 
-          <GalleryItem src="./images/image_10.png" alt="Momento 10" className="col-span-2 h-[55vw] md:h-72" imgClassName="object-[center_20%]" />
-          <GalleryItem src="./images/image_9.jpeg" alt="Momento 9" className="col-span-2 md:col-span-1 h-[55vw] md:h-72" />
+          {/* Fila 4: image_5 full width */}
+          <GalleryItem src="./images/image_5.jpeg" alt="Momento 5" className="col-span-2 h-[55vw]" />
 
-          <GalleryItem src="./images/image_5.jpeg" alt="Momento 5" className="col-span-2 md:col-span-3 h-[50vw] md:h-72" />
+          {/* Fila 5: image_6 + image_7 */}
+          <GalleryItem src="./images/image_6.jpeg" alt="Momento 6" className="col-span-1 h-[55vw]" />
+          <GalleryItem src="./images/image_7.jpeg" alt="Momento 7" className="col-span-1 h-[55vw]" />
+
+          {/* Fila 6: image_10 full width */}
+          <GalleryItem src="./images/image_10.png" alt="Momento 10" className="col-span-2 h-[55vw]" imgClassName="object-[center_20%]" />
+
+          {/* Fila 7: image_9 full width */}
+          <GalleryItem src="./images/image_9.jpeg" alt="Momento 9" className="col-span-2 h-[55vw]" />
+        </div>
+
+        {/* ===== DESKTOP LAYOUT (visible >= md) ===== */}
+        <div className="hidden md:grid grid-cols-[4fr_1fr] gap-6">
+          <div className="grid grid-cols-3 gap-6">
+            <GalleryItem src="./images/image_1.jpeg" alt="Momento 1" className="col-span-2 h-72" />
+            <GalleryItem src="./images/image_2.jpeg" alt="Momento 2" className="col-span-1 h-72" imgClassName="object-top" />
+
+            <GalleryItem src="./images/image_3.jpeg" alt="Momento 3" className="col-span-1 h-64" imgClassName="object-left" />
+            <GalleryItem src="./images/image_4.png"  alt="Momento 4" className="col-span-1 h-64" imgClassName="object-[center_15%]" />
+            <GalleryItem src="./images/image_5.jpeg" alt="Momento 5" className="col-span-1 h-64" />
+
+            <GalleryItem src="./images/image_6.jpeg" alt="Momento 6" className="col-span-1 h-72" />
+            <GalleryItem src="./images/image_7.jpeg" alt="Momento 7" className="col-span-2 h-72" />
+
+            <GalleryItem src="./images/image_10.png" alt="Momento 10" className="col-span-2 h-72" imgClassName="object-[center_20%]" />
+            <GalleryItem src="./images/image_9.jpeg" alt="Momento 9" className="col-span-1 h-72" />
+          </div>
+
+          <GalleryItem src="./images/image_8.jpeg" alt="Momento 8" className="h-full" imgClassName="object-[75%]" />
         </div>
       </div>
     </section>
