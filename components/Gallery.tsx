@@ -46,10 +46,13 @@ const Gallery: React.FC = () => {
 
             <GalleryItem src="./images/image_10.png" alt="Momento 10" className="col-span-2 h-[55vw] md:h-72" imgClassName="object-[center_20%]" />
             <GalleryItem src="./images/image_9.jpeg" alt="Momento 9" className="col-span-2 h-[55vw] md:col-span-1 md:h-72" />
+
+            {/* Image 8: inside mosaic on mobile only */}
+            <GalleryItem src="./images/image_8.jpeg" alt="Momento 8" className="col-span-2 h-[55vw] md:hidden" imgClassName="object-[75%]" />
           </div>
 
-          {/* Right: tall sidebar image — full width below mosaic on mobile, sidebar on desktop */}
-          <GalleryItem src="./images/image_8.jpeg" alt="Momento 8" className="w-full h-[75vw] md:h-full" imgClassName="object-[75%]" />
+          {/* Right: sidebar on desktop only */}
+          <GalleryItem src="./images/image_8.jpeg" alt="Momento 8" className="hidden md:block md:h-full" imgClassName="object-[75%]" />
         </div>
       </div>
     </section>
