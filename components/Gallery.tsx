@@ -48,8 +48,8 @@ const Gallery: React.FC = () => {
             <GalleryItem src="./images/image_9.jpeg" alt="Momento 9" className="col-span-2 h-[55vw] md:col-span-1 md:h-72" />
           </div>
 
-          {/* Right: tall sidebar image — hidden on mobile, visible on desktop */}
-          <GalleryItem src="./images/image_8.jpeg" alt="Momento 8" className="hidden md:block md:h-full" imgClassName="object-[75%]" />
+          {/* Right: tall sidebar image — full width below mosaic on mobile, sidebar on desktop */}
+          <GalleryItem src="./images/image_8.jpeg" alt="Momento 8" className="w-full h-[75vw] md:h-full" imgClassName="object-[75%]" />
         </div>
       </div>
     </section>
