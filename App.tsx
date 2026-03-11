@@ -7,6 +7,7 @@ import Events from './components/Events';
 import Registry from './components/Registry';
 import RSVPForm from './components/RSVPForm';
 import Gallery from './components/Gallery';
+import Accommodation from './components/Accommodation';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <OurStory />
         <Events />
         <Gallery />
+        <Accommodation />
         <Registry />
         <RSVPForm />
       </main>

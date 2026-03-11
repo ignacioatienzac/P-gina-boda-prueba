@@ -25,6 +25,7 @@ const Navbar = () => {
     { name: 'Inicio', href: '#home' },
     { name: 'Historia', href: '#story' },
     { name: 'Evento', href: '#event' },
+    { name: 'Vestimenta', href: '#accommodation' },
     { name: 'Regalos', href: '#registry' },
     { name: 'RSVP', href: '#rsvp' },
   ];
