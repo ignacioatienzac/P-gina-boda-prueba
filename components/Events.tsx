@@ -12,7 +12,7 @@ const Events: React.FC = () => {
       location: t.events.ceremony.location,
       address: t.events.ceremony.address,
       description: t.events.ceremony.description,
-      image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800'
+      image: './images/ceremonia.png'
     },
     {
       title: t.events.reception.title,
@@ -20,7 +20,7 @@ const Events: React.FC = () => {
       location: t.events.reception.location,
       address: t.events.reception.address,
       description: t.events.reception.description,
-      image: 'https://images.unsplash.com/photo-1465495910483-34a1be90c003?auto=format&fit=crop&q=80&w=800'
+      image: './images/banquete.png'
     }
   ];
 
