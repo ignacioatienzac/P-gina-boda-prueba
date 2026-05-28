@@ -25,7 +25,7 @@ const OurStory = () => {
           <div className="relative">
             <div className="absolute -top-4 -left-4 w-full h-full border border-amber-200"></div>
             <img 
-              src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800" 
+              src="./images/image_9.jpeg" 
               alt="The Couple" 
               className="relative z-10 w-full h-[500px] object-cover"
             />
