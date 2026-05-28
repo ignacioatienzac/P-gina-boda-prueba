@@ -24,7 +24,7 @@ const Accommodation: React.FC = () => {
             <h3 className="text-2xl font-serif text-amber-900 mb-5">{t.dressCode.men}</h3>
             <div className="relative group overflow-hidden shadow-lg mb-5">
               <img
-                src="/images/hombre.png"
+                src="./images/hombre.png"
                 alt={t.dressCode.men}
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -40,7 +40,7 @@ const Accommodation: React.FC = () => {
             <h3 className="text-2xl font-serif text-amber-900 mb-5">{t.dressCode.women}</h3>
             <div className="relative group overflow-hidden shadow-lg mb-5">
               <img
-                src="/images/mujer.png"
+                src="./images/mujer.png"
                 alt={t.dressCode.women}
                 className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
               />
