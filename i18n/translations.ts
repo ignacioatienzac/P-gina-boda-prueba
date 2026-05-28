@@ -72,6 +72,8 @@ export const translations = {
     registry: {
       heading: 'Regalos',
       text: 'Para nosotros, lo más importante es compartir este día con vosotros. Si de todas formas tenéis ilusión por hacernos un regalo, os dejamos aquí nuestro número de cuenta para vuestra comodidad:',
+      spanishBank: 'Banco español: Sabadell | ES95 0081 1288 9800 0125 1629',
+      hongKongBank: 'Banco hongkonés: HSBC | 061-375408-833',
     },
     // RSVP
     rsvp: {
@@ -172,6 +174,8 @@ export const translations = {
     registry: {
       heading: 'Gifts',
       text: 'The greatest gift to us is your presence on our special day. However, if you would like to honor us with a gift, we have provided our bank details below for your convenience:',
+      spanishBank: 'Spanish bank: Sabadell | ES95 0081 1288 9800 0125 1629',
+      hongKongBank: 'Hong Kong bank: HSBC | 061-375408-833',
     },
     rsvp: {
       title: 'R.S.V.P.',
@@ -270,6 +274,8 @@ export const translations = {
     registry: {
       heading: '禮物',
       text: '對我哋嚟講，最珍貴嘅禮物就係你哋喺呢個特別日子嘅出席。不過，如果你想送禮，我哋喺下面提供咗銀行資料方便你：',
+      spanishBank: '西班牙銀行：Sabadell | ES95 0081 1288 9800 0125 1629',
+      hongKongBank: '香港銀行：HSBC | 061-375408-833',
     },
     rsvp: {
       title: 'R.S.V.P.',

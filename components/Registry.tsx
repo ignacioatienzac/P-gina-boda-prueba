@@ -13,8 +13,9 @@ const Registry: React.FC = () => {
           {t.registry.text}
         </p>
 
-        <div className="p-8 bg-[#fdfbf7] border border-amber-100 inline-block">
-          <p className="text-gray-600 text-sm">Banco: International Bank | CLABE: 0123 4567 8901 2345 67</p>
+        <div className="p-8 bg-[#fdfbf7] border border-amber-100 inline-block text-left space-y-2">
+          <p className="text-gray-600 text-sm">{t.registry.spanishBank}</p>
+          <p className="text-gray-600 text-sm">{t.registry.hongKongBank}</p>
         </div>
       </div>
     </section>
