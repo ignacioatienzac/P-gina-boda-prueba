@@ -10,6 +10,7 @@ const RSVPForm = () => {
     email: '',
     attendance: 'yes',
     guests: 1,
+    busService: 'yes',
     dietary: '',
     message: ''
   });
@@ -33,6 +34,11 @@ const RSVPForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const busServiceText = formData.busService === 'yes' ? t.rsvp.busYes : t.rsvp.busNo;
+    const messageWithBusInfo = formData.message
+      ? `${formData.message}\n\n${t.rsvp.busSummary}: ${busServiceText}`
+      : `${t.rsvp.busSummary}: ${busServiceText}`;
+
     // URL de acción de tu Google Form
     const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSebedrMeIKWgvRA_xj6E9bndVbkoebrAIE5TflDlNyJM4JwDw/formResponse';
 
@@ -50,7 +56,7 @@ const RSVPForm = () => {
     
     formParams.append('entry.847141184', formData.guests.toString()); // INVITADOS
     formParams.append('entry.851968430', formData.dietary || ''); // DIETA
-    formParams.append('entry.267258121', formData.message || ''); // MENSAJE
+    formParams.append('entry.267258121', messageWithBusInfo); // MENSAJE + AUTOBUS
 
     try {
       await fetch(GOOGLE_FORM_URL, {
@@ -88,6 +94,7 @@ const RSVPForm = () => {
                   email: '',
                   attendance: 'yes',
                   guests: 1,
+                  busService: 'yes',
                   dietary: '',
                   message: ''
                 });
@@ -163,6 +170,35 @@ const RSVPForm = () => {
                     value={formData.guests}
                     onChange={e => setFormData({...formData, guests: parseInt(e.target.value) || 1})}
                   />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-3">{t.rsvp.busService}</label>
+                <div className="grid gap-3 md:grid-cols-2">
+                  <label className="flex items-center gap-3 border border-gray-200 px-4 py-3 text-sm text-gray-600 transition-colors hover:border-amber-300">
+                    <input
+                      type="radio"
+                      name="busService"
+                      value="yes"
+                      checked={formData.busService === 'yes'}
+                      onChange={e => setFormData({...formData, busService: e.target.value as 'yes' | 'self'})}
+                      className="h-4 w-4 accent-amber-700"
+                    />
+                    <span>{t.rsvp.busYes}</span>
+                  </label>
+
+                  <label className="flex items-center gap-3 border border-gray-200 px-4 py-3 text-sm text-gray-600 transition-colors hover:border-amber-300">
+                    <input
+                      type="radio"
+                      name="busService"
+                      value="self"
+                      checked={formData.busService === 'self'}
+                      onChange={e => setFormData({...formData, busService: e.target.value as 'yes' | 'self'})}
+                      className="h-4 w-4 accent-amber-700"
+                    />
+                    <span>{t.rsvp.busNo}</span>
+                  </label>
                 </div>
               </div>
 
