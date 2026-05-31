@@ -9,15 +9,16 @@ interface GalleryImage {
 
 const galleryImages: GalleryImage[] = [
   { src: './images/image_8.jpeg', alt: 'Momento 8' },
-  { src: './images/image_1.jpeg', alt: 'Momento 1' },
+  { src: './images/image_10.JPG', alt: 'Momento 10' },
+  { src: './images/image_9.jpeg', alt: 'Momento 9' },
   { src: './images/image_2.jpeg', alt: 'Momento 2' },
-  { src: './images/image_3.jpeg', alt: 'Momento 3' },
-  { src: './images/image_4.png', alt: 'Momento 4' },
+  { src: './images/image_1.jpeg', alt: 'Momento 1' },
   { src: './images/image_5.jpeg', alt: 'Momento 5' },
   { src: './images/image_6.jpeg', alt: 'Momento 6' },
+  { src: './images/image_3.jpeg', alt: 'Momento 3' },
   { src: './images/image_7.jpeg', alt: 'Momento 7' },
-  { src: './images/image_9.jpeg', alt: 'Momento 9' },
-  { src: './images/image_10.png', alt: 'Momento 10' },
+  { src: './images/image_11.png', alt: 'Momento 11' },
+  { src: './images/image_4.png', alt: 'Momento 4' },
 ];
 
 const Gallery: React.FC = () => {
@@ -39,7 +40,6 @@ const Gallery: React.FC = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-serif mb-4">{t.gallery.heading}</h2>
-          <p className="text-gray-500 font-script text-2xl">{t.gallery.subtitle}</p>
         </div>
 
         <div className="mx-auto max-w-6xl">
