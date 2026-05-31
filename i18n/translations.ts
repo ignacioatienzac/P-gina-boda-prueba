@@ -5,11 +5,11 @@ export const translations = {
     // Navbar
     nav: {
       home: 'Inicio',
-      moments: 'Nuestros Momentos',
+      moments: 'Momentos',
       story: 'Historia',
       event: 'Evento',
       dressCode: 'Vestimenta',
-      faq: 'Preguntas frecuentes',
+      faq: 'FAQ',
       gifts: 'Regalos',
       rsvp: 'RSVP',
       date: '8 de Agosto, 2026',
