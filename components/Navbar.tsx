@@ -94,8 +94,8 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-40 bg-white transition-all duration-500 ease-in-out transform ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'} lg:hidden`}>
-        <div className="flex flex-col items-center justify-center h-full space-y-8 px-6">
+      <div className={`fixed inset-0 z-40 bg-white transition-all duration-500 ease-in-out transform overflow-y-auto ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'} lg:hidden`}>
+        <div className="flex min-h-full flex-col items-center justify-start space-y-8 px-6 pt-28 pb-10">
           {navLinks.map((link) => (
             <a
               key={link.href}

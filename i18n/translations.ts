@@ -37,7 +37,7 @@ export const translations = {
       heading: 'El Gran Día',
       ceremony: {
         title: 'La Ceremonia',
-        time: '20:00 HRS',
+        time: '20:30 HRS',
         location: 'Jardines de la Finca',
         address: 'Finca Puerta de Hierro',
         description:
@@ -45,7 +45,7 @@ export const translations = {
       },
       reception: {
         title: 'Banquete & Fiesta',
-        time: '21:30 HRS',
+        time: '22:00 HRS',
         location: 'Gran Salón Principal',
         address: 'Finca Puerta de Hierro',
         description:
@@ -154,7 +154,7 @@ export const translations = {
       heading: 'The Big Day',
       ceremony: {
         title: 'The Ceremony',
-        time: '8:00 PM',
+        time: '8:30 PM',
         location: 'The Estate Gardens',
         address: 'Finca Puerta de Hierro',
         description:
@@ -162,7 +162,7 @@ export const translations = {
       },
       reception: {
         title: 'Reception & Party',
-        time: '9:30 PM',
+        time: '10:00 PM',
         location: 'The Grand Ballroom',
         address: 'Finca Puerta de Hierro',
         description:
@@ -266,7 +266,7 @@ export const translations = {
       heading: '大日子',
       ceremony: {
         title: '婚禮儀式',
-        time: '晚上8:00',
+        time: '晚上8:30',
         location: '莊園花園',
         address: 'Finca Puerta de Hierro',
         description:
@@ -274,7 +274,7 @@ export const translations = {
       },
       reception: {
         title: '晚宴及派對',
-        time: '晚上9:30',
+        time: '晚上10:00',
         location: '大宴會廳',
         address: 'Finca Puerta de Hierro',
         description:

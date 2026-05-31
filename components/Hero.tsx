@@ -4,8 +4,8 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 const Hero = () => {
   const { t } = useLanguage();
-  // Fecha: 8 de Agosto de 2026 a las 20:00 (8 PM)
-  const weddingDate = new Date('2026-08-08T20:00:00').getTime();
+  // Fecha: 8 de Agosto de 2026 a las 20:30
+  const weddingDate = new Date('2026-08-08T20:30:00').getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
