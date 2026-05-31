@@ -51,11 +51,6 @@ const RSVPForm = () => {
     setIsSubmitting(true);
 
     const busServiceText = formData.busService === 'yes' ? t.rsvp.busYes : t.rsvp.busNo;
-    const messageWithBusInfo = isAttending
-      ? (formData.message
-          ? `${formData.message}\n\n${t.rsvp.busSummary}: ${busServiceText}`
-          : `${t.rsvp.busSummary}: ${busServiceText}`)
-      : (formData.message || '');
 
     // URL de acción de tu Google Form
     const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSebedrMeIKWgvRA_xj6E9bndVbkoebrAIE5TflDlNyJM4JwDw/formResponse';
@@ -73,8 +68,9 @@ const RSVPForm = () => {
     formParams.append('entry.467575069', attendanceText);
     
     formParams.append('entry.847141184', formData.guests.toString()); // INVITADOS
+    formParams.append('entry.900174971', isAttending ? busServiceText : ''); // AUTOBUS
     formParams.append('entry.851968430', isAttending ? formData.dietary : ''); // DIETA
-    formParams.append('entry.267258121', messageWithBusInfo); // MENSAJE + AUTOBUS
+    formParams.append('entry.267258121', formData.message || ''); // MENSAJE
 
     try {
       await fetch(GOOGLE_FORM_URL, {
