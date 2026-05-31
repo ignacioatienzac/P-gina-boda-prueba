@@ -5,9 +5,11 @@ export const translations = {
     // Navbar
     nav: {
       home: 'Inicio',
+      moments: 'Nuestros Momentos',
       story: 'Historia',
       event: 'Evento',
       dressCode: 'Vestimenta',
+      faq: 'Preguntas frecuentes',
       gifts: 'Regalos',
       rsvp: 'RSVP',
       date: '8 de Agosto, 2026',
@@ -113,9 +115,11 @@ export const translations = {
   en: {
     nav: {
       home: 'Home',
+      moments: 'Our Moments',
       story: 'Story',
       event: 'Event',
       dressCode: 'Dress Code',
+      faq: 'FAQ',
       gifts: 'Gifts',
       rsvp: 'RSVP',
       date: 'August 8th, 2026',
@@ -213,9 +217,11 @@ export const translations = {
   yue: {
     nav: {
       home: '主頁',
+      moments: '我哋嘅時刻',
       story: '故事',
       event: '活動',
       dressCode: '着裝',
+      faq: '常見問題',
       gifts: '禮物',
       rsvp: '回覆',
       date: '2026年8月8日',

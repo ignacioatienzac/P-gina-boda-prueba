@@ -26,9 +26,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: t.nav.home, href: '#home' },
-    { name: t.nav.story, href: '#story' },
+    { name: t.nav.moments, href: '#gallery' },
     { name: t.nav.event, href: '#event' },
     { name: t.nav.dressCode, href: '#accommodation' },
+    { name: t.nav.faq, href: '#faq' },
     { name: t.nav.gifts, href: '#registry' },
     { name: t.nav.rsvp, href: '#rsvp' },
   ];

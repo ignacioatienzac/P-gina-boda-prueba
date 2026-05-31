@@ -2,12 +2,12 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import OurStory from './components/OurStory';
 import Events from './components/Events';
 import Registry from './components/Registry';
 import RSVPForm from './components/RSVPForm';
 import Gallery from './components/Gallery';
 import Accommodation from './components/Accommodation';
+import FAQ from './components/FAQ';
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 
 const AppContent = () => {
@@ -19,10 +19,10 @@ const AppContent = () => {
       
       <main>
         <Hero />
-        <OurStory />
-        <Events />
         <Gallery />
+        <Events />
         <Accommodation />
+        <FAQ />
         <Registry />
         <RSVPForm />
       </main>
