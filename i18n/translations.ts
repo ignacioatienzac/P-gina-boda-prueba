@@ -204,7 +204,7 @@ export const translations = {
       attending: 'Will you be attending?',
       attendYes: 'Yes, with great pleasure!',
       attendNo: "Unfortunately I can't",
-      guests: 'Number of Guests (including yourself)',
+      guests: 'Nº of Guests (including yourself)',
       busService: 'Will you use the shuttle service?',
       busYes: 'Yes',
       busNo: 'No, I will arrange my own ride there and back',
