@@ -13,7 +13,8 @@ const Accommodation: React.FC = () => {
           <h2 className="text-4xl font-serif mb-4 text-gray-800">{t.dressCode.heading}</h2>
           <div className="w-16 h-px bg-amber-300 mx-auto mb-8"></div>
           <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto text-justify">
-            {t.dressCode.intro}
+            <strong>{t.dressCode.introLead}</strong>{' '}
+            {t.dressCode.introRest}
           </p>
         </div>
 

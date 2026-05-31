@@ -10,14 +10,31 @@ const RSVPForm = () => {
     email: '',
     attendance: 'yes',
     guests: 1,
+    busService: 'yes',
     dietary: '',
     message: ''
   });
   const [isGenerating, setIsGenerating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const isAttending = formData.attendance === 'yes';
+
+  const handleAttendanceChange = (attendance: 'yes' | 'no') => {
+    setFormData(prev => ({
+      ...prev,
+      attendance,
+      guests: attendance === 'yes' ? (prev.guests > 0 ? prev.guests : 1) : 0,
+      busService: attendance === 'yes' ? prev.busService : 'self',
+      dietary: attendance === 'yes' ? prev.dietary : '',
+      message: attendance === 'yes' ? prev.message : ''
+    }));
+  };
 
   const handleGenerateMessage = async () => {
+    if (!isAttending) {
+      return;
+    }
+
     if (!formData.name) {
       alert(t.rsvp.nameRequired);
       return;
@@ -32,6 +49,13 @@ const RSVPForm = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    const busServiceText = formData.busService === 'yes' ? t.rsvp.busYes : t.rsvp.busNo;
+    const messageWithBusInfo = isAttending
+      ? (formData.message
+          ? `${formData.message}\n\n${t.rsvp.busSummary}: ${busServiceText}`
+          : `${t.rsvp.busSummary}: ${busServiceText}`)
+      : (formData.message || '');
 
     // URL de acción de tu Google Form
     const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSebedrMeIKWgvRA_xj6E9bndVbkoebrAIE5TflDlNyJM4JwDw/formResponse';
@@ -49,8 +73,8 @@ const RSVPForm = () => {
     formParams.append('entry.467575069', attendanceText);
     
     formParams.append('entry.847141184', formData.guests.toString()); // INVITADOS
-    formParams.append('entry.851968430', formData.dietary || ''); // DIETA
-    formParams.append('entry.267258121', formData.message || ''); // MENSAJE
+    formParams.append('entry.851968430', isAttending ? formData.dietary : ''); // DIETA
+    formParams.append('entry.267258121', messageWithBusInfo); // MENSAJE + AUTOBUS
 
     try {
       await fetch(GOOGLE_FORM_URL, {
@@ -88,6 +112,7 @@ const RSVPForm = () => {
                   email: '',
                   attendance: 'yes',
                   guests: 1,
+                  busService: 'yes',
                   dietary: '',
                   message: ''
                 });
@@ -146,44 +171,77 @@ const RSVPForm = () => {
                   <select 
                     className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none appearance-none bg-white"
                     value={formData.attendance}
-                    onChange={e => setFormData({...formData, attendance: e.target.value as 'yes' | 'no'})}
+                    onChange={e => handleAttendanceChange(e.target.value as 'yes' | 'no')}
                   >
                     <option value="yes">{t.rsvp.attendYes}</option>
                     <option value="no">{t.rsvp.attendNo}</option>
                   </select>
                 </div>
-                <div>
+                <div className={`transition-opacity ${isAttending ? 'opacity-100' : 'opacity-50'}`}>
                   <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">{t.rsvp.guests}</label>
                   <input 
                     type="number" 
-                    min="1" 
+                    min={isAttending ? '1' : '0'} 
                     max="10"
                     required
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none"
+                    disabled={!isAttending}
+                    className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none disabled:bg-gray-50 disabled:text-gray-400"
                     value={formData.guests}
                     onChange={e => setFormData({...formData, guests: parseInt(e.target.value) || 1})}
                   />
                 </div>
               </div>
 
-              <div>
+              <div className={`transition-opacity ${isAttending ? 'opacity-100' : 'opacity-50'}`}>
+                <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-3">{t.rsvp.busService}</label>
+                <div className="grid gap-3 md:grid-cols-2">
+                  <label className={`flex items-center gap-3 border border-gray-200 px-4 py-3 text-sm text-gray-600 transition-colors ${isAttending ? 'hover:border-amber-300' : 'cursor-not-allowed'}`}>
+                    <input
+                      type="radio"
+                      name="busService"
+                      value="yes"
+                      disabled={!isAttending}
+                      checked={formData.busService === 'yes'}
+                      onChange={e => setFormData({...formData, busService: e.target.value as 'yes' | 'self'})}
+                      className="h-4 w-4 accent-amber-700"
+                    />
+                    <span>{t.rsvp.busYes}</span>
+                  </label>
+
+                  <label className={`flex items-center gap-3 border border-gray-200 px-4 py-3 text-sm text-gray-600 transition-colors ${isAttending ? 'hover:border-amber-300' : 'cursor-not-allowed'}`}>
+                    <input
+                      type="radio"
+                      name="busService"
+                      value="self"
+                      disabled={!isAttending}
+                      checked={formData.busService === 'self'}
+                      onChange={e => setFormData({...formData, busService: e.target.value as 'yes' | 'self'})}
+                      className="h-4 w-4 accent-amber-700"
+                    />
+                    <span>{t.rsvp.busNo}</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className={`transition-opacity ${isAttending ? 'opacity-100' : 'opacity-50'}`}>
                 <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">{t.rsvp.dietary}</label>
                 <input 
                   type="text" 
+                  disabled={!isAttending}
                   placeholder={t.rsvp.dietaryPlaceholder}
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none"
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none disabled:bg-gray-50 disabled:text-gray-400"
                   value={formData.dietary}
                   onChange={e => setFormData({...formData, dietary: e.target.value})}
                 />
               </div>
 
-              <div>
+              <div className={`transition-opacity ${isAttending ? 'opacity-100' : 'opacity-50'}`}>
                 <div className="flex justify-between items-end mb-2">
                   <label className="text-xs uppercase tracking-widest font-bold text-gray-600">{t.rsvp.message}</label>
                   <button 
                     type="button"
                     onClick={handleGenerateMessage}
-                    disabled={isGenerating}
+                    disabled={isGenerating || !isAttending}
                     className="text-[10px] uppercase font-bold text-amber-700 hover:text-amber-800 flex items-center gap-1 disabled:opacity-50"
                   >
                     {isGenerating ? t.rsvp.generating : t.rsvp.aiSuggest}
@@ -191,7 +249,8 @@ const RSVPForm = () => {
                 </div>
                 <textarea 
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none resize-none"
+                  disabled={!isAttending}
+                  className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none resize-none disabled:bg-gray-50 disabled:text-gray-400"
                   value={formData.message}
                   onChange={e => setFormData({...formData, message: e.target.value})}
                 ></textarea>

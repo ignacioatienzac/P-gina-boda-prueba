@@ -18,7 +18,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) setIsMenuOpen(false);
+      if (window.innerWidth >= 1024) setIsMenuOpen(false);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -26,9 +26,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: t.nav.home, href: '#home' },
-    { name: t.nav.story, href: '#story' },
+    { name: t.nav.moments, href: '#gallery' },
     { name: t.nav.event, href: '#event' },
     { name: t.nav.dressCode, href: '#accommodation' },
+    { name: t.nav.faq, href: '#faq' },
     { name: t.nav.gifts, href: '#registry' },
     { name: t.nav.rsvp, href: '#rsvp' },
   ];
@@ -48,7 +49,7 @@ const Navbar = () => {
           </div>
           
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -78,7 +79,7 @@ const Navbar = () => {
           <button 
             type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden relative z-50 p-2 transition-colors duration-300 outline-none ${isScrolled || isMenuOpen ? 'text-amber-900' : 'text-white'}`}
+            className={`lg:hidden relative z-50 p-2 transition-colors duration-300 outline-none ${isScrolled || isMenuOpen ? 'text-amber-900' : 'text-white'}`}
             aria-label={t.nav.openMenu}
           >
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +94,7 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-40 bg-white transition-all duration-500 ease-in-out transform ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'} md:hidden`}>
+      <div className={`fixed inset-0 z-40 bg-white transition-all duration-500 ease-in-out transform ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'} lg:hidden`}>
         <div className="flex flex-col items-center justify-center h-full space-y-8 px-6">
           {navLinks.map((link) => (
             <a

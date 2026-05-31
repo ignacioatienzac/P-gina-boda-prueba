@@ -5,9 +5,11 @@ export const translations = {
     // Navbar
     nav: {
       home: 'Inicio',
+      moments: 'Momentos',
       story: 'Historia',
       event: 'Evento',
       dressCode: 'Vestimenta',
+      faq: 'FAQ',
       gifts: 'Regalos',
       rsvp: 'RSVP',
       date: '8 de Agosto, 2026',
@@ -59,8 +61,9 @@ export const translations = {
     // Accommodation (Dress Code)
     dressCode: {
       heading: 'Vestimenta',
-      intro:
-        'No hay un código de vestimenta para el evento. Sin embargo, os explicamos aquí cómo se visten los andaluces en estas ocasiones por si queréis adaptaros a la vestimenta local.',
+      introLead: 'No hay un código de vestimenta para el evento.',
+      introRest:
+        'Sin embargo, os explicamos aquí cómo se visten los andaluces en estas ocasiones por si queréis adaptaros a la vestimenta local.',
       men: 'Hombres',
       menText:
         'Lo más habitual es llevar traje y corbata, sobre todo en bodas de día. En las de tarde o noche, es frecuente optar por trajes oscuros o incluso chaqué si la boda es muy formal. Los andaluces suelen cuidar mucho los complementos (pañuelo, gemelos, zapatos elegantes).',
@@ -72,20 +75,29 @@ export const translations = {
     registry: {
       heading: 'Regalos',
       text: 'Para nosotros, lo más importante es compartir este día con vosotros. Si de todas formas tenéis ilusión por hacernos un regalo, os dejamos aquí nuestro número de cuenta para vuestra comodidad:',
-      spanishBank: 'Banco español: Sabadell | ES95 0081 1288 9800 0125 1629',
-      hongKongBank: 'Banco hongkonés: HSBC | 061-375408-833',
+      spanishBankLabel: 'Banco español',
+      spanishBankName: 'Sabadell',
+      spanishBankValue: 'ES95 0081 1288 9800 0125 1629',
+      hongKongBankLabel: 'Banco hongkonés',
+      hongKongBankName: 'HSBC',
+      hongKongBankValue: '061-375408-833',
+      thanks: 'Gracias por formar parte de este día tan especial.',
     },
     // RSVP
     rsvp: {
       title: 'R.S.V.P.',
       heading: 'Confirma tu Asistencia',
-      deadline: 'Por favor responde antes del 1 de Junio, 2026',
+      deadline: 'Por favor responde antes del 20 de Junio, 2026',
       name: 'Nombre Completo',
       email: 'Correo Electrónico',
       attending: '¿Asistirás?',
       attendYes: '¡Sí, con mucho gusto!',
       attendNo: 'Lamentablemente no puedo',
-      guests: 'Número de Invitados',
+      guests: 'Nº de Invitados (incluyéndote a ti)',
+      busService: '¿Vas a usar el servicio de autobús?',
+      busYes: 'Sí',
+      busNo: 'No, iré y volveré por mi cuenta',
+      busSummary: 'Servicio de autobús',
       dietary: 'Restricciones Alimentarias (Opcional)',
       dietaryPlaceholder: 'Alergias, vegetariano, etc.',
       message: 'Mensaje para los novios',
@@ -113,9 +125,11 @@ export const translations = {
   en: {
     nav: {
       home: 'Home',
+      moments: 'Our Moments',
       story: 'Story',
       event: 'Event',
       dressCode: 'Dress Code',
+      faq: 'FAQ',
       gifts: 'Gifts',
       rsvp: 'RSVP',
       date: 'August 8th, 2026',
@@ -162,8 +176,9 @@ export const translations = {
     },
     dressCode: {
       heading: 'Dress Code',
-      intro:
-        'There is no formal dress code for the event. However, for those who wish to embrace the local flair, here is a brief guide on how Andalusia celebrates these occasions:',
+      introLead: 'There is no formal dress code for the event.',
+      introRest:
+        'However, for those who wish to embrace the local flair, here is a brief guide on how Andalusia celebrates these occasions:',
       men: 'Men',
       menText:
         'A suit and tie is the most traditional choice, especially for daytime weddings. For evening celebrations, dark suits are common, or even a morning coat (chaqué) for very formal events. Andalusian style often focuses on the details—pocket squares, cufflinks, and polished dress shoes.',
@@ -174,19 +189,28 @@ export const translations = {
     registry: {
       heading: 'Gifts',
       text: 'The greatest gift to us is your presence on our special day. However, if you would like to honor us with a gift, we have provided our bank details below for your convenience:',
-      spanishBank: 'Spanish bank: Sabadell | ES95 0081 1288 9800 0125 1629',
-      hongKongBank: 'Hong Kong bank: HSBC | 061-375408-833',
+      spanishBankLabel: 'Spanish bank',
+      spanishBankName: 'Sabadell',
+      spanishBankValue: 'ES95 0081 1288 9800 0125 1629',
+      hongKongBankLabel: 'Hong Kong bank',
+      hongKongBankName: 'HSBC',
+      hongKongBankValue: '061-375408-833',
+      thanks: 'Thank you for being part of this very special day.',
     },
     rsvp: {
       title: 'R.S.V.P.',
       heading: 'Kindly Reply',
-      deadline: 'Please respond by June 1st, 2026',
+      deadline: 'Please respond by June 20th, 2026',
       name: 'Full Name',
       email: 'Email Address',
       attending: 'Will you be attending?',
       attendYes: 'Yes, with great pleasure!',
       attendNo: "Unfortunately I can't",
-      guests: 'Number of Guests',
+      guests: 'Nº of Guests (including yourself)',
+      busService: 'Will you use the shuttle service?',
+      busYes: 'Yes',
+      busNo: 'No, I will arrange my own ride there and back',
+      busSummary: 'Shuttle service',
       dietary: 'Dietary Restrictions (Optional)',
       dietaryPlaceholder: 'Allergies, vegetarian, etc.',
       message: 'A Message for the Couple',
@@ -213,9 +237,11 @@ export const translations = {
   yue: {
     nav: {
       home: '主頁',
+      moments: '我哋嘅時刻',
       story: '故事',
       event: '活動',
       dressCode: '着裝',
+      faq: '常見問題',
       gifts: '禮物',
       rsvp: '回覆',
       date: '2026年8月8日',
@@ -262,8 +288,9 @@ export const translations = {
     },
     dressCode: {
       heading: '着裝指南',
-      intro:
-        '活動冇正式嘅着裝要求。不過，如果你想融入當地風情，以下係安達盧西亞慶祝呢啲場合嘅簡短指南：',
+      introLead: '活動冇正式嘅着裝要求。',
+      introRest:
+        '不過，如果你想融入當地風情，以下係安達盧西亞慶祝呢啲場合嘅簡短指南：',
       men: '男士',
       menText:
         '西裝配領帶係最傳統嘅選擇，特別係日間婚禮。晚間慶典常見深色西裝，甚至晨禮服（chaqué）用於非常正式嘅場合。安達盧西亞風格注重細節——袋巾、袖扣同擦亮嘅皮鞋。',
@@ -274,19 +301,28 @@ export const translations = {
     registry: {
       heading: '禮物',
       text: '對我哋嚟講，最珍貴嘅禮物就係你哋喺呢個特別日子嘅出席。不過，如果你想送禮，我哋喺下面提供咗銀行資料方便你：',
-      spanishBank: '西班牙銀行：Sabadell | ES95 0081 1288 9800 0125 1629',
-      hongKongBank: '香港銀行：HSBC | 061-375408-833',
+      spanishBankLabel: '西班牙銀行',
+      spanishBankName: 'Sabadell',
+      spanishBankValue: 'ES95 0081 1288 9800 0125 1629',
+      hongKongBankLabel: '香港銀行',
+      hongKongBankName: 'HSBC',
+      hongKongBankValue: '061-375408-833',
+      thanks: '多謝你成為我哋呢個特別日子嘅一部分。',
     },
     rsvp: {
       title: 'R.S.V.P.',
       heading: '敬請回覆',
-      deadline: '請喺2026年6月1日前回覆',
+      deadline: '請喺2026年6月20日前回覆',
       name: '全名',
       email: '電郵地址',
       attending: '你會出席嗎？',
       attendYes: '會，好開心！',
       attendNo: '好可惜，去唔到',
-      guests: '賓客人數',
+      guests: '賓客人數（包括你自己）',
+      busService: '你會唔會使用巴士服務？',
+      busYes: '會',
+      busNo: '唔會，我會自己安排來回交通',
+      busSummary: '巴士服務',
       dietary: '飲食限制（選填）',
       dietaryPlaceholder: '過敏、素食等',
       message: '畀新人嘅訊息',
