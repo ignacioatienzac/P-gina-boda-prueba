@@ -87,7 +87,7 @@ export const translations = {
       attending: '¿Asistirás?',
       attendYes: '¡Sí, con mucho gusto!',
       attendNo: 'Lamentablemente no puedo',
-      guests: 'Número de Invitados (incluyéndote a ti)',
+      guests: 'Nº de Invitados (incluyéndote a ti)',
       busService: '¿Vas a usar el servicio de autobús?',
       busYes: 'Sí',
       busNo: 'No, iré y volveré por mi cuenta',
