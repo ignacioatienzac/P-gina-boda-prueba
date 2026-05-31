@@ -61,8 +61,9 @@ export const translations = {
     // Accommodation (Dress Code)
     dressCode: {
       heading: 'Vestimenta',
-      intro:
-        'No hay un código de vestimenta para el evento. Sin embargo, os explicamos aquí cómo se visten los andaluces en estas ocasiones por si queréis adaptaros a la vestimenta local.',
+      introLead: 'No hay un código de vestimenta para el evento.',
+      introRest:
+        'Sin embargo, os explicamos aquí cómo se visten los andaluces en estas ocasiones por si queréis adaptaros a la vestimenta local.',
       men: 'Hombres',
       menText:
         'Lo más habitual es llevar traje y corbata, sobre todo en bodas de día. En las de tarde o noche, es frecuente optar por trajes oscuros o incluso chaqué si la boda es muy formal. Los andaluces suelen cuidar mucho los complementos (pañuelo, gemelos, zapatos elegantes).',
@@ -86,7 +87,7 @@ export const translations = {
     rsvp: {
       title: 'R.S.V.P.',
       heading: 'Confirma tu Asistencia',
-      deadline: 'Por favor responde antes del 1 de Junio, 2026',
+      deadline: 'Por favor responde antes del 20 de Junio, 2026',
       name: 'Nombre Completo',
       email: 'Correo Electrónico',
       attending: '¿Asistirás?',
@@ -175,8 +176,9 @@ export const translations = {
     },
     dressCode: {
       heading: 'Dress Code',
-      intro:
-        'There is no formal dress code for the event. However, for those who wish to embrace the local flair, here is a brief guide on how Andalusia celebrates these occasions:',
+      introLead: 'There is no formal dress code for the event.',
+      introRest:
+        'However, for those who wish to embrace the local flair, here is a brief guide on how Andalusia celebrates these occasions:',
       men: 'Men',
       menText:
         'A suit and tie is the most traditional choice, especially for daytime weddings. For evening celebrations, dark suits are common, or even a morning coat (chaqué) for very formal events. Andalusian style often focuses on the details—pocket squares, cufflinks, and polished dress shoes.',
@@ -198,7 +200,7 @@ export const translations = {
     rsvp: {
       title: 'R.S.V.P.',
       heading: 'Kindly Reply',
-      deadline: 'Please respond by June 1st, 2026',
+      deadline: 'Please respond by June 20th, 2026',
       name: 'Full Name',
       email: 'Email Address',
       attending: 'Will you be attending?',
@@ -286,8 +288,9 @@ export const translations = {
     },
     dressCode: {
       heading: '着裝指南',
-      intro:
-        '活動冇正式嘅着裝要求。不過，如果你想融入當地風情，以下係安達盧西亞慶祝呢啲場合嘅簡短指南：',
+      introLead: '活動冇正式嘅着裝要求。',
+      introRest:
+        '不過，如果你想融入當地風情，以下係安達盧西亞慶祝呢啲場合嘅簡短指南：',
       men: '男士',
       menText:
         '西裝配領帶係最傳統嘅選擇，特別係日間婚禮。晚間慶典常見深色西裝，甚至晨禮服（chaqué）用於非常正式嘅場合。安達盧西亞風格注重細節——袋巾、袖扣同擦亮嘅皮鞋。',
@@ -309,7 +312,7 @@ export const translations = {
     rsvp: {
       title: 'R.S.V.P.',
       heading: '敬請回覆',
-      deadline: '請喺2026年6月1日前回覆',
+      deadline: '請喺2026年6月20日前回覆',
       name: '全名',
       email: '電郵地址',
       attending: '你會出席嗎？',
