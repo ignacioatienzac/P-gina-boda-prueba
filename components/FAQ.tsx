@@ -84,7 +84,7 @@ const faqContent: Record<Language, FAQContent> = {
         question: <>8. Me gustaría dar un discurso, organizar un juego o preparar una sorpresa. ¿Con quién debo coordinarlo?</>,
         answer: (
           <div className="space-y-3">
-            <p>¡Nos haría muchísima ilusión! Para ayudarnos a que todo vaya bien organizado -y para que algunas sorpresas sigan siendo sorpresa para nosotros-, por favor, <strong>contacta con Jimena por WhatsApp en el +34 610 464 030</strong>. Puedes escribirle en inglés o en español, y ella ayudará a coordinar todos los detalles.</p>
+            <p>¡Nos haría muchísima ilusión! Para ayudarnos a que todo vaya bien organizado -y para que algunas sorpresas sigan siendo sorpresa para nosotros-, por favor, <strong>contacta con Jimena por correo: jimen94@gmail.com</strong>. Puedes escribirle en inglés o en español, y ella ayudará a coordinar todos los detalles.</p>
           </div>
         ),
       },
@@ -159,7 +159,7 @@ const faqContent: Record<Language, FAQContent> = {
         question: <>8. I would like to give a speech, organize a game, or prepare a surprise. Who should I coordinate with?</>,
         answer: (
           <div className="space-y-3">
-            <p>We would be absolutely delighted. To help us keep everything organized -and to make sure some surprises remain a surprise for us-, please <strong>contact Jimena on WhatsApp at +34 610 464 030</strong>. You can write to her in English or Spanish, and she will help coordinate all the details.</p>
+            <p>We would be absolutely delighted. To help us keep everything organized -and to make sure some surprises remain a surprise for us-, please <strong>contact Jimena by email: jimen94@gmail.com</strong>. You can write to her in English or Spanish, and she will help coordinate all the details.</p>
           </div>
         ),
       },
@@ -234,7 +234,7 @@ const faqContent: Record<Language, FAQContent> = {
         question: <>8. 如果我想致辭、安排遊戲或者準備驚喜，應該同邊個聯絡？</>,
         answer: (
           <div className="space-y-3">
-            <p>我哋一定會非常開心。為咗令所有安排更順利，亦都令部分驚喜可以繼續對我哋保密，請你 <strong>透過 WhatsApp 聯絡 Jimena：+34 610 464 030</strong>。你可以用英文或者西班牙文同佢聯絡，佢會幫手統籌所有細節。</p>
+            <p>我哋一定會非常開心。為咗令所有安排更順利，亦都令部分驚喜可以繼續對我哋保密，請你 <strong>透過電郵聯絡 Jimena：jimen94@gmail.com</strong>。你可以用英文或者西班牙文同佢聯絡，佢會幫手統籌所有細節。</p>
           </div>
         ),
       },
