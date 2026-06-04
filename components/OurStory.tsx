@@ -25,7 +25,7 @@ const OurStory = () => {
           <div className="relative">
             <div className="absolute -top-4 -left-4 w-full h-full border border-amber-200"></div>
             <img 
-              src="./images/image_9.jpeg" 
+              src="/images/image_9.jpeg" 
               alt="The Couple" 
               className="relative z-10 w-full h-[500px] object-cover"
               style={{ objectPosition: '65% 50%' }}
