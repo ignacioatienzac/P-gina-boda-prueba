@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 interface GalleryImage {
@@ -21,11 +21,33 @@ const galleryImages: GalleryImage[] = [
   { src: './images/image_4.png', alt: 'Momento 4' },
 ];
 
+const preloadedImages = new Set<string>();
+
+const preloadImage = (src: string) => {
+  if (preloadedImages.has(src)) {
+    return;
+  }
+
+  const image = new Image();
+  image.src = src;
+  preloadedImages.add(src);
+};
+
 const Gallery: React.FC = () => {
   const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const currentImage = galleryImages[currentIndex];
+
+  useEffect(() => {
+    preloadImage(currentImage.src);
+
+    const nextImage = galleryImages[(currentIndex + 1) % galleryImages.length];
+    const previousImage = galleryImages[(currentIndex - 1 + galleryImages.length) % galleryImages.length];
+
+    preloadImage(nextImage.src);
+    preloadImage(previousImage.src);
+  }, [currentImage.src, currentIndex]);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
@@ -47,6 +69,7 @@ const Gallery: React.FC = () => {
             <img
               src={currentImage.src}
               alt={currentImage.alt}
+              decoding="async"
               className="h-full w-full object-contain bg-white p-3 sm:p-5 lg:p-8"
             />
 
