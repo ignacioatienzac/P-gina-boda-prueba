@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { geminiService } from '../services/gemini';
 import { useLanguage } from '../i18n/LanguageContext';
 
+const guestOptions = Array.from({ length: 10 }, (_, index) => index + 1);
+
 const RSVPForm = () => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
@@ -27,6 +29,13 @@ const RSVPForm = () => {
       busService: attendance === 'yes' ? prev.busService : 'self',
       dietary: attendance === 'yes' ? prev.dietary : '',
       message: attendance === 'yes' ? prev.message : ''
+    }));
+  };
+
+  const handleGuestsChange = (guests: number) => {
+    setFormData(prev => ({
+      ...prev,
+      guests: isAttending ? Math.min(10, Math.max(1, guests || 1)) : 0
     }));
   };
 
@@ -175,15 +184,31 @@ const RSVPForm = () => {
                 </div>
                 <div className={`transition-opacity ${isAttending ? 'opacity-100' : 'opacity-50'}`}>
                   <label className="block text-xs uppercase tracking-widest font-bold text-gray-600 mb-2">{t.rsvp.guests}</label>
+                  <div className="md:hidden">
+                    <select
+                      required
+                      disabled={!isAttending}
+                      className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none appearance-none bg-white disabled:bg-gray-50 disabled:text-gray-400"
+                      value={isAttending ? formData.guests : 0}
+                      onChange={e => handleGuestsChange(parseInt(e.target.value, 10))}
+                    >
+                      {!isAttending && <option value="0">0</option>}
+                      {guestOptions.map(option => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                   <input 
                     type="number" 
                     min={isAttending ? '1' : '0'} 
                     max="10"
                     required
                     disabled={!isAttending}
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none disabled:bg-gray-50 disabled:text-gray-400"
+                    className="hidden w-full px-4 py-3 border border-gray-200 focus:border-amber-400 focus:ring-0 outline-none disabled:bg-gray-50 disabled:text-gray-400 md:block"
                     value={formData.guests}
-                    onChange={e => setFormData({...formData, guests: parseInt(e.target.value) || 1})}
+                    onChange={e => handleGuestsChange(parseInt(e.target.value, 10))}
                   />
                 </div>
               </div>
