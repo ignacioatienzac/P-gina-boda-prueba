@@ -5,9 +5,30 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 const guestOptions = Array.from({ length: 10 }, (_, index) => index + 1);
 
+const GOOGLE_FORM_VALUES = {
+  attendance: {
+    yes: 'Sí, con mucho gusto',
+    no: 'Lamentablemente no puedo',
+  },
+  busService: {
+    yes: 'Sí',
+    self: 'No, iré y volveré por mi cuenta',
+  },
+} as const;
+
+type RSVPFormData = {
+  name: string;
+  email: string;
+  attendance: 'yes' | 'no';
+  guests: number;
+  busService: 'yes' | 'self';
+  dietary: string;
+  message: string;
+};
+
 const RSVPForm = () => {
   const { t } = useLanguage();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<RSVPFormData>({
     name: '',
     email: '',
     attendance: 'yes',
@@ -59,8 +80,6 @@ const RSVPForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const busServiceText = formData.busService === 'yes' ? t.rsvp.busYes : t.rsvp.busNo;
-
     // URL de acción de tu Google Form
     const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSebedrMeIKWgvRA_xj6E9bndVbkoebrAIE5TflDlNyJM4JwDw/formResponse';
 
@@ -72,12 +91,13 @@ const RSVPForm = () => {
     formParams.append('entry.158407503', formData.name); // NOMBRE
     formParams.append('entry.709473353', formData.email); // EMAIL
     
-    // Transformamos el valor
-    const attendanceText = formData.attendance === 'yes' ? 'Sí, con mucho gusto' : 'Lamentablemente no puedo';
-    formParams.append('entry.467575069', attendanceText);
+    formParams.append('entry.467575069', GOOGLE_FORM_VALUES.attendance[formData.attendance]);
     
     formParams.append('entry.847141184', formData.guests.toString()); // INVITADOS
-    formParams.append('entry.900174971', isAttending ? busServiceText : ''); // AUTOBUS
+    formParams.append(
+      'entry.900174971',
+      isAttending ? GOOGLE_FORM_VALUES.busService[formData.busService] : ''
+    ); // AUTOBUS
     formParams.append('entry.851968430', isAttending ? formData.dietary : ''); // DIETA
     formParams.append('entry.267258121', formData.message || ''); // MENSAJE
 
